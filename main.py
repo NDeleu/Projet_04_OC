@@ -58,8 +58,8 @@ tournoi1.round.round_start()
 """
 Execution d'un second round sans avoir saisie tous les résultats
 """
-#tournoi1.round.round_start()
-#print(tournoi1.round.round_match)
+# tournoi1.round.round_start()
+# print(tournoi1.round.round_match)
 
 """
 Saisie des résultats du premier round
@@ -89,6 +89,3 @@ tournoi1.round.rematch(1, 0, 0, 1)
 Nouvelle visualiusation des résultats des joueurs après modification
 """
 # print(tournoi1.round.resultat_joueur)
-
-
-
