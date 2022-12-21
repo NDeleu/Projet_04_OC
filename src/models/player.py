@@ -1,10 +1,10 @@
 
 class Player:
-    def __init__(self, name, surname, age, classement):
+    def __init__(self, name, surname, age, rank):
         self.name = name
         self.surname = surname
         self.age = age
-        self.classement = classement
+        self.rank = rank
         self.round_point = 0
 
     def __str__(self):

@@ -8,7 +8,7 @@ class Tournoi:
         self.date = []
         self.tours_round = tours_round
         self.round = []
-        self.liste_joueur = []
+        self.player_list = []
         self.control_temps = control_temps
         self.description = str
 

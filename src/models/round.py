@@ -2,8 +2,8 @@ import datetime
 
 
 class Round:
-    def __init__(self, liste_joueur, tours_round, start_time):
-        self.name = str
+    def __init__(self, round_number, start_time):
+        self.name = f"Round{round_number}"
         self.match = []
         self.start_time = start_time
         self.end_time = datetime
@@ -13,10 +13,3 @@ class Round:
 
     def __repr__(self):
         return str(self)
-
-
-
-
-
-
-
