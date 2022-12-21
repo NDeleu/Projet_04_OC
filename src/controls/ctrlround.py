@@ -1,3 +1,25 @@
+"""
+!!!
+* Fusionner les roundspoint et les encounterplayer ds Round
+* Ajouter date de fin à la fin de test_round(?) si autant de match que ceux prévu (list joueur/2)
+* Envoyer nombre ds match à partir de round (qd record ds liste) + considérer fin match qd result_match ok
+* Finir Other_Round en utilisant ranked round_point+not in list (créer une liste pr la méthode
+    des noms déjà enregistrés) + not in encounter et faire une méthodception pr éviter le while
+* Mettre les roundpts et encounter player dans la class ctrltournoi + technique pr éviter de refr dès le début
+    en cas de reprise en plein round
+* Utiliser la date de fin d'un Round pr passer au suivant dans la class ctrltournoi
+* Envoyer nombre ds round à partir de tournoi (qd record ds liste)
+* Record les dates des Rounds dans la liste des dates de Tournoi
+* Réarranger tous les for pour [for...]
+* mettre choix tours round ds tournoi
+* mettre choix control temps ds tournoi
+* proposer description ds tournoi
+* changer résultats method pr match
+* method pr add players ds player list ds tournoi
+* trnamsttre liste joueur de tournoi à round
+!!!
+"""
+
 
 """
 # Round : arrangement des autres Rounds

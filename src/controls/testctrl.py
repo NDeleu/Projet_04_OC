@@ -43,6 +43,20 @@ class RoundControl(Round):
                 elif player == matching.result_match[1][0]:
                     player.round_point += matching.result_match[1][1]
 
+    def init_encountered_player(self):
+        for player in self.player_list:
+            self.encountered_player(player)
+
+    def encountered_player(self, player):
+        player.encountered.clear()
+        # for matchs in rounds:
+        for matching in self.match:
+            if matching.result_match:
+                if player == matching.result_match[0][0]:
+                    player.encountered.append(matching.result_match[1][0])
+                elif player == matching.result_match[1][0]:
+                    player.encountered.append(matching.result_match[0][0])
+
     # Round : initialise les instances de matchs dans round.match et print les matchs en question demandant un résultat
     def init_round(self):
         self.first_round()
@@ -90,13 +104,13 @@ list_play = [pl1, pl2, pl3, pl4, pl5, pl6, pl7, pl8]
 
 round1 = RoundControl(list_play, 1, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
-print(pl4.round_point)
+print(pl4.encountered)
 
 round1.test_round()
 round1.match[0].record_result_match(1, 0)
 print(round1.match[0])
-round1.init_round_point_players()
-print(pl4.round_point)
+round1.init_encountered_player()
+print(pl4.encountered)
 
 """
 print(round1)

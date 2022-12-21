@@ -6,6 +6,7 @@ class Player:
         self.age = age
         self.rank = rank
         self.round_point = 0
+        self.encountered = []
 
     def __str__(self):
         return f"{self.name} {self.surname}"
