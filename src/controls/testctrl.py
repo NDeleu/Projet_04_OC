@@ -4,6 +4,8 @@ from src.models import Round
 from src.models import Match
 from src.models import Player
 
+# Ne pas faire d'héritage, plutot call la class/instance ds la classe qui control
+# Faire une class control par class modèle utilisée
 
 class RoundControl(Round):
     def __init__(self, player_list, round_number, start_time):
