@@ -43,4 +43,17 @@ print(match1)
 match1.result = (["Jacques", 1], ["Micheline", 0])
 
 print(match1)
+
+exemple de match1 suite :
+
+match1 = Match("Jean", "Marc")
+match1.name = "match1"
+
+print(match1)
+
+match1.result_player1 = 1
+match1.result_player2 = 0
+match1.result_match = ([match1.player1, match1.result_player1], [match1.player2, match1.result_player2])
+
+print(match1)
 """

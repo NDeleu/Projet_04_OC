@@ -1,18 +1,21 @@
 
 
 class Match:
-    def __init__(self, matching_players):
+    def __init__(self, player1, player2):
         self.name = str
-        self.matching_players = matching_players
-        self.result = ([], [])
+        self.player1 = player1
+        self.player2 = player2
+        self.result_player1 = int
+        self.result_player2 = int
+        self.result_match = ()
 
     def __str__(self):
-        if not self.result[0] or not self.result[1]:
-            return f"{self.name} : {self.matching_players[0]} contre {self.matching_players[1]} : résultat à définir"
+        if not self.result_match:
+            return f"{self.name} : {self.player1} vs {self.player2} : résultat à définir"
+
         else:
-            return f"{self.name} : {self.result[0][0]} : {self.result[0][1]}, {self.result[1][0]} : {self.result[1][1]}"
+            return f"{self.name} : {self.result_match}"
 
     def __repr__(self):
         return str(self)
-
 
