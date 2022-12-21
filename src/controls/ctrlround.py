@@ -1,5 +1,27 @@
 
 """
+# Round : arrangement des autres Rounds
+def other_round(players):
+    init_round_point_players(players)
+    sorted_by_point = sorted(player_list, key=lambda x: x.round_point)
+    for y in range(int(len(sorted_by_point) / 2)):
+        round1.match.append(Match(y+1, sorted_by_point[y], sorted_by_point[y+1]))
+
+
+def init_round_point_players(players):
+    for player in players:
+        round_point_player(player)
+
+
+def round_point_player(player):
+    player.round_point = 0
+    for matchs in rounds:
+        for matching in matchs:
+            if matching[0] == player:
+                player.round_point += matching[1]
+"""
+
+"""
 Lancer un nouveau round + vérifier et créer le nom du nouveau round + l'ajouter à la liste tournoi.round
 !!!
 a rework pour ne pas devoir utiliser un compter check round, mais en considérant la liste préalablement établie
