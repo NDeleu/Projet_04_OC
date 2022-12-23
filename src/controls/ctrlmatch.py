@@ -24,5 +24,5 @@ class ControlMatch:
         return self.match.result_match
 
     def add_result_match(self, tournoi_number, round_number, match_number, result_player1, result_player2):
-        self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match[match_number-1] = \
+        self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match[match_number-1].result_match = \
             self.input_result_match(tournoi_number, round_number, match_number, result_player1, result_player2)

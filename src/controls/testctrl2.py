@@ -1,21 +1,5 @@
 
-
-
-
-
-
-
-
 """
-# Round :
-
-def first_round(self):
-    sorted_by_rank = sorted(self.player_list, key=lambda x: x.rank)
-    for y in range(int(len(sorted_by_rank) / 2)):
-        self.match.append(
-            MatchControl(y + 1, sorted_by_rank[y], sorted_by_rank[y + (int(len(sorted_by_rank) / 2))]))
-        
-
 # Round : arrangement des autres Rounds
 def other_round(self):
     self.init_round_point_players(players)
@@ -55,21 +39,4 @@ def encountered_player(self, player):
             elif player == matching.result_match[1][0]:
                 player.encountered.append(matching.result_match[0][0])
 
-# Round : initialise les instances de matchs dans round.match et print les matchs en question demandant un résultat
-def init_round(self):
-    self.first_round()
-    
-# Round : print les matchs restants demandant un résultat
-def show_match_to_record(self):
-    for matching in self.match:
-        if not matching.result_match:
-            print(matching)
-
-# Round : Conditionne l'emploi des fonctions init et show en fonction du fait qu'init est déjà eu lieu ou non
-def test_round(self):
-    if not self.match:
-        self.init_round()
-        self.show_match_to_record()
-    else:
-        self.show_match_to_record()
 """
