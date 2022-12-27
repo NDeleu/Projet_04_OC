@@ -11,8 +11,18 @@ class ControlRound:
     def init_round(self, round_number):
         return self.round(round_number, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
+    def add_date_tournoi(self, tournoi_number, dates):
+        if dates not in self.manager.list_all_tournoi[tournoi_number-1].date:
+            self.manager.list_all_tournoi[tournoi_number-1].date.append(dates)
+
     def add_round(self, tournoi_number, round_number):
+        print(f"Début du Round{round_number}")
         self.manager.list_all_tournoi[tournoi_number-1].round.append(self.init_round(round_number))
+        self.add_date_tournoi(
+            tournoi_number,
+            datetime.datetime.strptime(
+                self.manager.list_all_tournoi[tournoi_number-1].round[
+                    round_number-1].start_time, "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d"))
 
     # Round : print les matchs restants demandant un résultat
     def show_match_to_record(self, tournoi_number, round_number):
@@ -21,7 +31,8 @@ class ControlRound:
                 print(matching)
 
     def show_match_end(self, tournoi_number, round_number):
-        print("Round terminé le", self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].end_time)
+        print(f"Round{round_number} terminé le", self.manager.list_all_tournoi[
+            tournoi_number-1].round[round_number-1].end_time)
         for matching in self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match:
             print(matching)
 
@@ -106,6 +117,11 @@ class ControlRound:
     def register_end_time(self, tournoi_number, round_number):
         self.manager.list_all_tournoi[tournoi_number - 1].round[round_number - 1].end_time = \
             datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.add_date_tournoi(
+            tournoi_number,
+            datetime.datetime.strptime(
+                self.manager.list_all_tournoi[tournoi_number - 1].round[
+                    round_number - 1].end_time, "%Y-%m-%d %H:%M:%S").strftime("%Y-%m-%d"))
 
     def test_all_scores_register(self, tournoi_number, round_number):
         for matching in self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match:

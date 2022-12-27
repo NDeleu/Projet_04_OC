@@ -1,13 +1,7 @@
 
 
 # Tournoi :
-"""
-def join_players(self, liste_joueur):
-    for player in liste_joueur:
-        self.liste_joueur.append(player)
 
-!!! Il faut une liste des indices correspondant aux instances de joueurs stockés ds tinydb !!!
-"""
 """
 Créer la même pour self.date et self.round
 

@@ -2,13 +2,13 @@ from .round import Round
 
 
 class Tournoi:
-    def __init__(self, name, lieu, player_list, control_temps, tours_round=4):
+    def __init__(self, name, lieu, control_temps, tours_round=4):
         self.name = name
         self.lieu = lieu
         self.date = []
         self.tours_round = tours_round
         self.round = []
-        self.player_list = player_list
+        self.player_list = []
         self.control_temps = control_temps
         self.description = str
 
