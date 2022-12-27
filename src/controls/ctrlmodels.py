@@ -3,6 +3,7 @@ from src.controls import ControlMatch
 from src.controls import ControlRound
 from src.controls import ControlTournoi
 from src.controls import ControlPlayer
+import datetime
 
 
 class ControlModels:
@@ -51,5 +52,4 @@ print(ctrl.manager.list_all_tournoi[0].round[1].match)
 print(ctrl.manager.list_all_tournoi[0].player_list[0].encountered)
 
 print(ctrl.manager.list_all_tournoi[0].player_list[0].round_point)
-
-
+ctrl.ctrl_round.test_round(1, 1)

@@ -20,6 +20,11 @@ class ControlRound:
             if not matching.result_match:
                 print(matching)
 
+    def show_match_end(self, tournoi_number, round_number):
+        print("Round terminé le", self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].end_time)
+        for matching in self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match:
+            print(matching)
+
     def first_round(self, tournoi_number, round_number):
         sorted_by_rank = sorted(self.manager.list_all_tournoi[tournoi_number-1].player_list, key=lambda x: x.rank)
         for y in range(int(len(sorted_by_rank) / 2)):
@@ -92,6 +97,22 @@ class ControlRound:
                 elif player == matching.result_match[1][0]:
                     player.round_point += matching.result_match[1][1]
 
+    def test_end_time_register(self, tournoi_number, round_number):
+        if self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].end_time:
+            return True
+        else:
+            return False
+
+    def register_end_time(self, tournoi_number, round_number):
+        self.manager.list_all_tournoi[tournoi_number - 1].round[round_number - 1].end_time = \
+            datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    def test_all_scores_register(self, tournoi_number, round_number):
+        for matching in self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match:
+            if not matching.result_match:
+                return False
+        return True
+
     # Round : initialise les instances de matchs dans round.match et print les matchs en question demandant un résultat
     def run_round(self, tournoi_number, round_number):
         if round_number == 1:
@@ -106,4 +127,11 @@ class ControlRound:
             self.run_round(tournoi_number, round_number)
             self.show_match_to_record(tournoi_number, round_number)
         else:
-            self.show_match_to_record(tournoi_number, round_number)
+            if self.test_all_scores_register(tournoi_number, round_number):
+                if self.test_end_time_register(tournoi_number, round_number):
+                    self.show_match_end(tournoi_number, round_number)
+                else:
+                    self.register_end_time(tournoi_number, round_number)
+                    self.show_match_end(tournoi_number, round_number)
+            else:
+                self.show_match_to_record(tournoi_number, round_number)

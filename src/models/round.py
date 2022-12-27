@@ -6,7 +6,7 @@ class Round:
         self.name = f"Round{round_number}"
         self.match = []
         self.start_time = start_time
-        self.end_time = datetime
+        self.end_time = None
 
     def __str__(self):
         return f"{self.name}"
