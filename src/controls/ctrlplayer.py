@@ -6,8 +6,8 @@ class ControlPlayer:
         self.player = Player
         self.manager = manager
 
-    def init_player(self, name, surname, age, rank):
-        return self.player(name, surname, age, rank)
+    def init_player(self, name, surname, naissance, identifiant, rank):
+        return self.player(name, surname, naissance, identifiant, rank)
 
-    def add_player(self, name, surname, age, rank):
-        self.manager.list_all_player.append(self.init_player(name, surname, age, rank))
+    def add_player(self, name, surname, naissance, identifiant, rank):
+        self.manager.list_all_player.append(self.init_player(name, surname, naissance, identifiant, rank))

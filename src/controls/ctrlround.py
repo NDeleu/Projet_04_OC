@@ -1,4 +1,5 @@
 import datetime
+import random
 from src.models import Round
 
 
@@ -37,20 +38,23 @@ class ControlRound:
             print(matching)
 
     def first_round(self, tournoi_number, round_number):
-        sorted_by_rank = sorted(self.manager.list_all_tournoi[tournoi_number-1].player_list, key=lambda x: x.rank)
-        for y in range(int(len(sorted_by_rank) / 2)):
+        shuffled_list = self.manager.list_all_tournoi[tournoi_number-1].player_list
+        random.shuffle(shuffled_list)
+        for y in range(int(len(shuffled_list) / 2)):
             self.match_control.add_match(
-                tournoi_number, round_number, y + 1, sorted_by_rank[y],
-                sorted_by_rank[y + (int(len(sorted_by_rank) / 2))])
+                tournoi_number, round_number, y + 1, shuffled_list[y],
+                shuffled_list[y + (int(len(shuffled_list) / 2))])
 
     def other_round(self, tournoi_number, round_number):
         sorted_by_round_point = sorted(
-            self.manager.list_all_tournoi[tournoi_number-1].player_list, key=lambda x: x.round_point)
+            self.manager.list_all_tournoi[tournoi_number-1].player_list, key=lambda x: x.round_point, reverse=True)
+        sorted_by_round_point_extend = sorted_by_round_point
+        sorted_by_round_point_extend.append("Out")
         for y in range(int(len(sorted_by_round_point) / 2)):
             self.match_control.add_match(
                 tournoi_number, round_number, y + 1,
-                self.test_player1_matches_round(sorted_by_round_point, tournoi_number, round_number),
-                self.test_player2_matches_round(sorted_by_round_point, tournoi_number, round_number))
+                self.test_player1_matches_round(sorted_by_round_point_extend, tournoi_number, round_number),
+                self.test_player2_matches_round(sorted_by_round_point_extend, tournoi_number, round_number))
 
     # Vérifie si la liste match de ce round existe
     def test_player1_matches_round(self, list_played, tournoi_number, round_number):
@@ -81,7 +85,15 @@ class ControlRound:
 
     def test_player2_in_round(self, list_played, tournoi_number, round_number):
         for player in list_played:
-            if self.test_player_in_round_incept(player, tournoi_number, round_number) is False:
+            if player == "Out":
+                for players in list_played:
+                    if self.test_player_in_round_incept(players, tournoi_number, round_number) is False:
+                        pass
+                    elif players == self.test_player1_matches_round(list_played, tournoi_number, round_number):
+                        pass
+                    else:
+                        return players
+            elif self.test_player_in_round_incept(player, tournoi_number, round_number) is False:
                 pass
             elif player == self.test_player1_matches_round(list_played, tournoi_number, round_number):
                 pass
