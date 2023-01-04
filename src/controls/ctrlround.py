@@ -110,6 +110,7 @@ class ControlRound:
     def init_round_point(self, tournoi_number):
         for player in self.manager.list_all_tournoi[tournoi_number-1].player_list:
             player.round_point = 0
+            player.encountered = []
             self.calcul_round_point(tournoi_number, player)
 
     def calcul_round_point(self, tournoi_number, player):
@@ -117,8 +118,10 @@ class ControlRound:
             for matching in rounding.match:
                 if player == matching.result_match[0][0]:
                     player.round_point += matching.result_match[0][1]
+                    player.encountered.append(matching.result_match[1][0])
                 elif player == matching.result_match[1][0]:
                     player.round_point += matching.result_match[1][1]
+                    player.encountered.append(matching.result_match[0][0])
 
     def test_end_time_register(self, tournoi_number, round_number):
         if self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].end_time:
