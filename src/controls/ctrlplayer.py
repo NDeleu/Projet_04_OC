@@ -39,5 +39,5 @@ class ControlPlayer:
         self.load_all_player()
         for players in self.manager.list_all_player:
             players.total_point = 0
-            self.calcul_total_point(players) # save tournoi, clear list, open all tournoi
+            self.calcul_total_point(players)
             self.manager.save_total_point_player_to_json(players)

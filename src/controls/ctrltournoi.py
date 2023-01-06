@@ -2,10 +2,11 @@ from src.models import Tournoi
 
 
 class ControlTournoi:
-    def __init__(self, manager, round_control):
+    def __init__(self, manager, round_control, player_control):
         self.tournoi = Tournoi
         self.manager = manager
         self.round_control = round_control
+        self.player_control = player_control
 
     def init_tournoi(self, name, lieu, control_temps, tours_round=4):
         return self.tournoi(name, lieu, control_temps, tours_round)
@@ -39,6 +40,14 @@ class ControlTournoi:
         for y in range(self.manager.len_list_tournoi):
             self.load_tournoi_by_id(y+1)
 
+    def creat_add_player_tournoi(self, tournoi_number, name, surname, naissance, identifiant):
+        self.player_control.add_player(name, surname, naissance, identifiant)
+        self.add_player_tournoi(tournoi_number, self.manager.list_all_player[len(self.manager.list_all_player)-1])
+
+    def load_add_player_tournoi(self, tournoi_number, identifiant_player):
+        self.player_control.load_player_by_idplayer(identifiant_player)
+        self.add_player_tournoi(tournoi_number, self.manager.list_all_player[len(self.manager.list_all_player) - 1])
+
     def add_player_tournoi(self, tournoi_number, player):
         self.manager.list_all_tournoi[tournoi_number-1].player_list.append(player)
 
@@ -57,6 +66,13 @@ class ControlTournoi:
                 for player in sorted(self.manager.list_all_tournoi[tournoi_number-1].player_list,
                                      key=lambda x: x.round_point, reverse=True):
                     print(player, " ", player.round_point, "points")
+                self.manager.save_date_tournoi_to_json(tournoi_number)
+                self.manager.save_round_tournoi_to_json(tournoi_number)
+                self.manager.clear_list_tournoi()
+                self.load_all_tournoi()
+                self.player_control.init_total_point()
+                self.manager.clear_list_tournoi()
+                self.manager.clear_list_player()
             else:
                 if self.manager.list_all_tournoi[tournoi_number-1].round[len(
                         self.manager.list_all_tournoi[tournoi_number-1].round)-1].end_time:

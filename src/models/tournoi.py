@@ -1,4 +1,3 @@
-from .round import Round
 
 
 class Tournoi:
@@ -30,5 +29,3 @@ class Tournoi:
 
     def __repr__(self):
         return str(self)
-
-

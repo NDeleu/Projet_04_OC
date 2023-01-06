@@ -36,14 +36,20 @@ class ControlManager:
     def creat_tournoi_to_json(self, tournoi_number):
         self.manager.db_tournois.insert(self.dict_tournoi_to_json(tournoi_number))
 
-    def save_date_tournoi_to_json(self, tournoi):
-        self.manager.db_tournois.update({"date": tournoi.date}, self.manager.seek.name == tournoi.name)
+    def save_date_tournoi_to_json(self, tournoi_number):
+        self.manager.db_tournois.update(
+            {"date": self.list_all_tournoi[tournoi_number-1].date},
+            self.manager.seek.name == self.list_all_tournoi[tournoi_number-1].name)
 
-    def save_round_tournoi_to_json(self, tournoi):
-        self.manager.db_tournois.update({"round": tournoi.round}, self.manager.seek.name == tournoi.name)
+    def save_round_tournoi_to_json(self, tournoi_number):
+        self.manager.db_tournois.update(
+            {"round": self.init_dict_rounds(tournoi_number)},
+            self.manager.seek.name == self.list_all_tournoi[tournoi_number-1].name)
 
-    def save_description_tournoi_to_json(self, tournoi):
-        self.manager.db_tournois.update({"description": tournoi.description}, self.manager.seek.name == tournoi.name)
+    def save_description_tournoi_to_json(self, tournoi_number):
+        self.manager.db_tournois.update(
+            {"description": self.list_all_tournoi[tournoi_number-1].description},
+            self.manager.seek.name == self.list_all_tournoi[tournoi_number-1].name)
 
     def load_tournoi_to_json_by_id(self, id_tournoi):
         return self.manager.db_tournois.get(doc_id=id_tournoi)

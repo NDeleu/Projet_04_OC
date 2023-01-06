@@ -11,7 +11,7 @@ class ControlModels:
         self.ctrl_player = ControlPlayer(self.ctrl_manager)
         self.ctrl_match = ControlMatch(self.ctrl_manager)
         self.ctrl_round = ControlRound(self.ctrl_manager, self.ctrl_match)
-        self.ctrl_tournoi = ControlTournoi(self.ctrl_manager, self.ctrl_round)
+        self.ctrl_tournoi = ControlTournoi(self.ctrl_manager, self.ctrl_round, self.ctrl_player)
 
 
 # For test :
@@ -167,9 +167,12 @@ print(ctrl.ctrl_manager.list_all_player[1], ctrl.ctrl_manager.list_all_player[1]
 print(ctrl.ctrl_manager.list_all_player[2], ctrl.ctrl_manager.list_all_player[2].total_point)
 
 for players in ctrl.ctrl_manager.list_all_player:
-    ctrl.ctrl_manager.save_player_to_json((ctrl.ctrl_manager.manager.db_players.get(ctrl.ctrl_manager.manager.seek.identifiant == players.identifiant)).doc_id)
+    ctrl.ctrl_manager.save_player_to_json(
+    (ctrl.ctrl_manager.manager.db_players.get(
+    ctrl.ctrl_manager.manager.seek.identifiant == players.identifiant)).doc_id)
 """
-
+"""
 print(ctrl.ctrl_manager.list_all_player)
 ctrl.ctrl_player.load_all_player()
 print(ctrl.ctrl_manager.list_all_player)
+"""
