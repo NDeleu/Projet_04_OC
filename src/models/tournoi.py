@@ -2,8 +2,8 @@ from .round import Round
 
 
 class Tournoi:
-    def __init__(self, name, lieu, control_temps, description=None, player_list=None, rounds=None,
-                 date=None, tours_round=4):
+    def __init__(self, name, lieu, control_temps, tours_round=4, player_list=None, rounds=None,
+                 date=None, description=None):
         self.name = name
         self.lieu = lieu
         if date is None:

@@ -189,12 +189,3 @@ for y in range(len(tournoi1.rounds)):
     for i in range(len(tournoi1.rounds[y].match)):
         tournoi1.rounds[y].match[i] = Match(**tournoi1.rounds[y].match[i])
 
-coucou = "coucou"
-
-if isinstance(coucou, int) or isinstance(coucou, float):
-    print("int")
-else:
-    if coucou.isdecimal():
-        print("decimal")
-    else:
-        print("no")
