@@ -17,6 +17,10 @@ class ControlPlayer:
         self.manager.list_all_player.append(
             self.player(**self.manager.load_player_to_json(player_number)))
 
+    def load_all_player(self):
+        for y in range(self.manager.len_list_player()):
+            self.load_player(y+1)
+
     def calcul_total_point(self, players):
         for tournoi in self.manager.list_all_tournoi:
             for rounding in tournoi.round:
@@ -27,6 +31,9 @@ class ControlPlayer:
                         players.total_point += matching.result_match[1][1]
 
     def init_total_point(self):
+        self.manager.clear_list_player()
+        self.load_all_player()
         for players in self.manager.list_all_player:
             players.total_point = 0
-            self.calcul_total_point(players)
+            self.calcul_total_point(players) # save tournoi, clear list, open all tournoi
+            self.manager.save_total_point_player_to_json(players)

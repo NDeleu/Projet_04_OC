@@ -10,17 +10,31 @@ class ControlManager:
     def creat_player_to_json(self, player_number):
         self.manager.db_players.insert(self.dict_player_to_json(player_number))
 
-    def save_player_to_json(self, player_number):
-        self.manager.db_players.update(self.dict_player_to_json(player_number))
+    def save_total_point_player_to_json(self, player):
+        self.manager.db_players.update(
+            {"total_point": player.total_point},
+            self.manager.seek.identifiant == player.identifiant)
 
     def load_player_to_json(self, player_number):
         return self.manager.db_players.get(doc_id=player_number)
 
-    def creat_tournoi_to_json(self, tournoi_number):
-        self.manager.db_tournois.insert(self.dict_tournoi_to_json(tournoi_number))
+    def clear_list_player(self):
+        self.list_all_player.clear()
 
-    def save_tournoi_to_json(self, tournoi_number):
-        self.manager.db_tournois.update(self.dict_tournoi_to_json(tournoi_number))
+    def clear_list_tournoi(self):
+        self.list_all_tournoi.clear()
+
+    def len_list_player(self):
+        return len(self.manager.db_players)
+
+    def len_list_tournoi(self):
+        return len(self.manager.db_tournois)
+
+    # def creat_tournoi_to_json(self, tournoi_number):
+        # self.manager.db_tournois.insert(self.dict_tournoi_to_json(tournoi_number))
+
+    # def save_tournoi_to_json(self, tournoi_number):
+        # self.manager.db_tournois.update(self.dict_tournoi_to_json(tournoi_number))
 
     def load_tournoi_to_json(self):
         pass
@@ -31,7 +45,7 @@ class ControlManager:
                 "naissance": self.list_all_player[player_number-1].naissance,
                 "identifiant": self.list_all_player[player_number-1].identifiant,
                 "total_point": self.list_all_player[player_number-1].total_point}
-
+"""
     def dict_tournoi_to_json(self, tournoi_number):
         return {"name": self.list_all_tournoi[tournoi_number-1].name,
                 "lieu": self.list_all_tournoi[tournoi_number-1].lieu,
@@ -88,3 +102,4 @@ class ControlManager:
                     self.manager.db_players.get(
                         self.manager.seek.identifiant == match.player2.identifiant).doc_id)),
                 "result_match": self.init_dict_result_match(match)}
+"""

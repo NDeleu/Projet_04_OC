@@ -30,6 +30,7 @@ ctrl.ctrl_player.add_player("Dubouillon", "Brigitte", "01/01/1960", "FB12345")
 ctrl.ctrl_player.add_player("Delagauffre", "Jose", "05/12/1975", "GB12345")
 ctrl.ctrl_player.add_player("Dupoisson", "Nicolas", "02/01/1983", "HB12345")
 """
+"""
 ctrl.ctrl_player.load_player(1)
 ctrl.ctrl_player.load_player(2)
 ctrl.ctrl_player.load_player(3)
@@ -157,6 +158,7 @@ ctrl.ctrl_tournoi.start_tournoi(1)
 
 print(ctrl.ctrl_manager.list_all_tournoi)
 
+
 # a placer à l open et a la save du player ? on retire l init et on insere le nom du joueur direct ?
 ctrl.ctrl_player.init_total_point()
 
@@ -166,10 +168,8 @@ print(ctrl.ctrl_manager.list_all_player[2], ctrl.ctrl_manager.list_all_player[2]
 
 for players in ctrl.ctrl_manager.list_all_player:
     ctrl.ctrl_manager.save_player_to_json((ctrl.ctrl_manager.manager.db_players.get(ctrl.ctrl_manager.manager.seek.identifiant == players.identifiant)).doc_id)
+"""
 
-
-
-
-
-
-
+print(ctrl.ctrl_manager.list_all_player)
+ctrl.ctrl_player.load_all_player()
+print(ctrl.ctrl_manager.list_all_player)
