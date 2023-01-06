@@ -2,15 +2,28 @@ from .round import Round
 
 
 class Tournoi:
-    def __init__(self, name, lieu, control_temps, tours_round=4):
+    def __init__(self, name, lieu, control_temps, description=None, player_list=None, rounds=None,
+                 date=None, tours_round=4):
         self.name = name
         self.lieu = lieu
-        self.date = []
+        if date is None:
+            self.date = []
+        else:
+            self.date = date
         self.tours_round = tours_round
-        self.round = []
-        self.player_list = []
+        if rounds is None:
+            self.round = []
+        else:
+            self.round = rounds
+        if player_list is None:
+            self.player_list = []
+        else:
+            self.player_list = player_list
         self.control_temps = control_temps
-        self.description = str
+        if description is None:
+            self.description = str
+        else:
+            self.description = description
 
     def __str__(self):
         return f"{self.name} à {self.lieu}"
