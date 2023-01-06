@@ -13,13 +13,17 @@ class ControlPlayer:
         self.manager.list_all_player.append(self.init_player(name, surname, naissance, identifiant))
         self.manager.creat_player_to_json(len(self.manager.list_all_player))
 
-    def load_player(self, player_number):
+    def load_player_by_idplayer(self, identifiant_player):
         self.manager.list_all_player.append(
-            self.player(**self.manager.load_player_to_json(player_number)))
+            self.player(**self.manager.load_player_to_json_by_idplayer(identifiant_player)))
+
+    def load_player_by_idjson(self, player_number):
+        self.manager.list_all_player.append(
+            self.player(**self.manager.load_player_to_json_by_idjson(player_number)))
 
     def load_all_player(self):
         for y in range(self.manager.len_list_player()):
-            self.load_player(y+1)
+            self.load_player_by_idjson(y+1)
 
     def calcul_total_point(self, players):
         for tournoi in self.manager.list_all_tournoi:

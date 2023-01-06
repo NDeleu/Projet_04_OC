@@ -13,7 +13,7 @@ un des 3 pas autre chose
 """
 proposer input de description, exemple d'utilisation : tournoi1.description = "Yo je suis le président"
 """
-
+"""
 db = TinyDB("db.json")
 
 
@@ -100,7 +100,7 @@ class Player:
 
 databasetournoi = db.table("totaltournois")
 databasejoueurs = db.table("totaljoueurs")
-
+"""
 """
 pl1 = Player("Rond", "Jean", 18)
 pl2 = Player("Carre", "Patrick", 21)
@@ -181,11 +181,16 @@ print(pl3)
 """
 Donc check quand utiliser cette technique de désérialisation pr aller du json à l'instance de classe
 """
-
+"""
 tournoi1 = Tournoi(**databasetournoi.get(doc_id=1))
 
 for y in range(len(tournoi1.rounds)):
     tournoi1.rounds[y] = Round(**tournoi1.rounds[y])
     for i in range(len(tournoi1.rounds[y].match)):
         tournoi1.rounds[y].match[i] = Match(**tournoi1.rounds[y].match[i])
+"""
+list_test = [1, 2, 3, 4]
 
+list_test.append(5)
+
+print(list_test[len(list_test)-1])
