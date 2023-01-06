@@ -76,6 +76,8 @@ class ControlTournoi:
             else:
                 if self.manager.list_all_tournoi[tournoi_number-1].round[len(
                         self.manager.list_all_tournoi[tournoi_number-1].round)-1].end_time:
+                    self.manager.save_date_tournoi_to_json(tournoi_number)
+                    self.manager.save_round_tournoi_to_json(tournoi_number)
                     self.round_control.add_round(tournoi_number, len(
                         self.manager.list_all_tournoi[tournoi_number-1].round)+1)
                 else:
