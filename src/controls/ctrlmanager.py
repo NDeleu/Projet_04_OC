@@ -7,16 +7,13 @@ class ControlManager:
         self.list_all_player = []
         self.manager = Manager()
 
-    def creat_player_to_json(self, player_number):
-        self.manager.db_players.insert(self.dict_player_to_json(player_number))
-
     def save_total_point_player_to_json(self, player):
         self.manager.db_players.update(
             {"total_point": player.total_point},
             self.manager.seek.identifiant == player.identifiant)
 
     def load_player_to_json_by_idplayer(self, identifiant_player):
-        return self.manager.db_players.search(self.manager.seek.identifiant == identifiant_player)
+        return self.manager.db_players.search(self.manager.seek.identifiant == identifiant_player)[0]
 
     def load_player_to_json_by_idjson(self, player_number):
         return self.manager.db_players.get(doc_id=player_number)
@@ -46,6 +43,11 @@ class ControlManager:
             {"round": self.init_dict_rounds(tournoi_number)},
             self.manager.seek.name == self.list_all_tournoi[tournoi_number-1].name)
 
+    def save_players_tournoi_to_json(self, tournoi_number):
+        self.manager.db_tournois.update(
+            {"player_list": self.init_dict_players(tournoi_number)},
+            self.manager.seek.name == self.list_all_tournoi[tournoi_number-1].name)
+
     def save_description_tournoi_to_json(self, tournoi_number):
         self.manager.db_tournois.update(
             {"description": self.list_all_tournoi[tournoi_number-1].description},
@@ -55,7 +57,7 @@ class ControlManager:
         return self.manager.db_tournois.get(doc_id=id_tournoi)
 
     def load_tournoi_to_json_by_name(self, name_tournoi):
-        return self.manager.db_tournois.search(self.manager.seek.name == name_tournoi)
+        return self.manager.db_tournois.search(self.manager.seek.name == name_tournoi)[0]
 
     def dict_player_to_json(self, player_number):
         return {"name": self.list_all_player[player_number-1].name,
@@ -63,6 +65,9 @@ class ControlManager:
                 "naissance": self.list_all_player[player_number-1].naissance,
                 "identifiant": self.list_all_player[player_number-1].identifiant,
                 "total_point": self.list_all_player[player_number-1].total_point}
+
+    def creat_player_to_json(self, player_number):
+        self.manager.db_players.insert(self.dict_player_to_json(player_number))
 
     def dict_tournoi_to_json(self, tournoi_number):
         return {"name": self.list_all_tournoi[tournoi_number-1].name,
@@ -88,35 +93,31 @@ class ControlManager:
 
     def init_dict_matchs(self, rounds):
         list_init_matchs = []
-        for matchs in rounds:
+        for matchs in rounds.match:
             list_init_matchs.append(self.dict_match_to_json(matchs))
         return list_init_matchs
 
     def init_dict_players(self, tournoi_number):
         list_init_players = []
         for players in self.list_all_tournoi[tournoi_number-1].player_list:
-            list_init_players.append(self.dict_player_to_json(
-                self.manager.db_players.search(
-                    self.manager.seek.identifiant == players.identifiant)))
+            list_init_players.append(self.dict_player_to_json(self.list_all_player.index(players)))
         return list_init_players
 
     def init_dict_result_match(self, match):
-        result_match = ([self.dict_player_to_json((
-            self.manager.db_players.get(
-                self.manager.seek.identifiant == match.result_match[0][0].identifiant).doc_id)),
-                            match.result_match[0][1]], [
-            self.dict_player_to_json((
-                self.manager.db_players.get(
-                    self.manager.seek.identifiant == match.result_match[1][0].identifiant).doc_id)),
-            match.result_match[1][1]])
+        result_match = ([self.dict_player_to_json(self.list_all_player.index(match.result_match[0][0])),
+                         match.result_match[0][1]],
+                        [self.dict_player_to_json(self.list_all_player.index(match.result_match[1][0])),
+                         match.result_match[1][1]])
         return result_match
 
     def dict_match_to_json(self, match):
         return {"name": match.name,
-                "player1": self.dict_player_to_json((
-                    self.manager.db_players.get(
-                        self.manager.seek.identifiant == match.player1.identifiant).doc_id)),
-                "player2": self.dict_player_to_json((
-                    self.manager.db_players.get(
-                        self.manager.seek.identifiant == match.player2.identifiant).doc_id)),
+                "player1": self.dict_player_to_json(self.list_all_player.index(match.player1)),
+                "player2": self.dict_player_to_json(self.list_all_player.index(match.player2)),
                 "result_match": self.init_dict_result_match(match)}
+
+    def link_player_class(self, dict_to_class):
+        for ply in self.list_all_player:
+            if dict_to_class == self.dict_player_to_json(self.list_all_player.index(ply)):
+                return ply
+        return False

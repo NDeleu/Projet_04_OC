@@ -1,14 +1,14 @@
 
 
 class Round:
-    def __init__(self, round_number, start_time, match=None, end_time=None):
-        if isinstance(round_number, int) or isinstance(round_number, float):
-            self.name = f"Round{round_number}"
+    def __init__(self, name, start_time, match=None, end_time=None):
+        if isinstance(name, int) or isinstance(name, float):
+            self.name = f"Round{name}"
         else:
-            if round_number.isdecimal():
-                self.name = f"Round{round_number}"
+            if name.isdecimal():
+                self.name = f"Round{name}"
             else:
-                self.name = round_number
+                self.name = name
         if match is None:
             self.match = []
         else:

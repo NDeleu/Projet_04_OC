@@ -166,3 +166,62 @@ class ControlRound:
                     self.show_match_end(tournoi_number, round_number)
             else:
                 self.show_match_to_record(tournoi_number, round_number)
+
+    def load_round_by_name(self, i):
+        for v in range(len(self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match)):
+            self.manager.list_all_tournoi[len(
+                self.manager.list_all_tournoi)-1].round[i].match[v] = self.match_control.match(
+                **self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v])
+            self.link_player1_match(
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v].player1, i, v)
+            self.link_player2_match(
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v].player2, i, v)
+            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].result_match = \
+                (self.manager.list_all_tournoi[len(
+                    self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[0],
+                 self.manager.list_all_tournoi[len(
+                     self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[1])
+            self.manager.list_all_tournoi[len(
+                self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[0][0] = \
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].player1
+            self.manager.list_all_tournoi[len(
+                self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[1][0] = \
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].player2
+
+    def load_round_by_id(self, i):
+        for v in range(len(self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match)):
+            self.manager.list_all_tournoi[len(
+                self.manager.list_all_tournoi)-1].round[i].match[v] = self.match_control.match(
+                **self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v])
+            self.link_player1_match(
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].player1, i, v)
+            self.link_player2_match(
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].player2, i, v)
+            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].result_match = \
+                (self.manager.list_all_tournoi[len(
+                    self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[0],
+                 self.manager.list_all_tournoi[len(
+                     self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[1])
+            self.manager.list_all_tournoi[len(
+                self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[0][0] = \
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].player1
+            self.manager.list_all_tournoi[len(
+                self.manager.list_all_tournoi) - 1].round[i].match[v].result_match[1][0] = \
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v].player2
+
+    def link_player1_match(self, plyer, i, v):
+        if not self.manager.link_player_class(plyer):
+            pass
+        else:
+            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v].player1 = \
+                self.manager.link_player_class(plyer)
+
+    def link_player2_match(self, plyer, i, v):
+        if not self.manager.link_player_class(plyer):
+            pass
+        else:
+            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v].player2 = \
+                self.manager.link_player_class(plyer)
+
+    def adjust_result_match(self):
+        pass

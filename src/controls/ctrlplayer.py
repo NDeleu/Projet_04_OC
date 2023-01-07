@@ -14,6 +14,7 @@ class ControlPlayer:
         self.manager.creat_player_to_json(len(self.manager.list_all_player))
 
     def load_player_by_idplayer(self, identifiant_player):
+        # if self.manager.load_player_to_json_by_idplayer(identifiant_player)
         self.manager.list_all_player.append(
             self.player(**self.manager.load_player_to_json_by_idplayer(identifiant_player)))
 
@@ -35,9 +36,9 @@ class ControlPlayer:
                         players.total_point += matching.result_match[1][1]
 
     def init_total_point(self):
-        self.manager.clear_list_player()
-        self.load_all_player()
         for players in self.manager.list_all_player:
             players.total_point = 0
             self.calcul_total_point(players)
             self.manager.save_total_point_player_to_json(players)
+
+

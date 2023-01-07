@@ -19,25 +19,30 @@ class ControlTournoi:
     def load_tournoi_by_name(self, name):
         self.manager.list_all_tournoi.append(self.tournoi(**self.manager.load_tournoi_to_json_by_name(name)))
         for i in range(len(self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round)):
-            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i] = self.round_control.Round(
+            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i] = self.round_control.round(
                 **self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i])
-            for v in range(len(self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match)):
-                self.manager.list_all_tournoi[len(
-                    self.manager.list_all_tournoi) - 1].round[i].match[v] = self.round_control.match_control.match(
-                    **self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].round[i].match[v])
+            self.round_control.load_round_by_name(i)
+            self.link_player_tournoi()
 
     def load_tournoi_by_id(self, id_tournoi):
         self.manager.list_all_tournoi.append(self.tournoi(**self.manager.load_tournoi_to_json_by_id(id_tournoi)))
+        self.link_player_tournoi()
         for i in range(len(self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round)):
-            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i] = self.round_control.Round(
+            self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i] = self.round_control.round(
                 **self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i])
-            for v in range(len(self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match)):
-                self.manager.list_all_tournoi[len(
-                    self.manager.list_all_tournoi)-1].round[i].match[v] = self.round_control.match_control.match(
-                    **self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].round[i].match[v])
+            self.round_control.load_round_by_id(i)
+
+    def link_player_tournoi(self):
+        for plyer in self.manager.list_all_tournoi[len(self.manager.list_all_tournoi)-1].player_list:
+            if not self.manager.link_player_class(plyer):
+                pass
+            else:
+                self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].player_list[
+                    self.manager.list_all_tournoi[len(self.manager.list_all_tournoi) - 1].player_list.index(plyer)] = \
+                    self.manager.link_player_class(plyer)
 
     def load_all_tournoi(self):
-        for y in range(self.manager.len_list_tournoi):
+        for y in range(self.manager.len_list_tournoi()):
             self.load_tournoi_by_id(y+1)
 
     def creat_add_player_tournoi(self, tournoi_number, name, surname, naissance, identifiant):
@@ -69,10 +74,12 @@ class ControlTournoi:
                 self.manager.save_date_tournoi_to_json(tournoi_number)
                 self.manager.save_round_tournoi_to_json(tournoi_number)
                 self.manager.clear_list_tournoi()
+                self.manager.clear_list_player()
+                self.player_control.load_all_player()
                 self.load_all_tournoi()
                 self.player_control.init_total_point()
-                self.manager.clear_list_tournoi()
                 self.manager.clear_list_player()
+                self.manager.clear_list_tournoi()
             else:
                 if self.manager.list_all_tournoi[tournoi_number-1].round[len(
                         self.manager.list_all_tournoi[tournoi_number-1].round)-1].end_time:

@@ -1,14 +1,14 @@
 
 
 class Match:
-    def __init__(self, match_number, player1, player2, result_match=None):
-        if isinstance(match_number, int) or isinstance(match_number, float):
-            self.name = f"Match{match_number}"
+    def __init__(self, name, player1, player2, result_match=None):
+        if isinstance(name, int) or isinstance(name, float):
+            self.name = f"Match{name}"
         else:
-            if match_number.isdecimal():
-                self.name = f"Match{match_number}"
+            if name.isdecimal():
+                self.name = f"Match{name}"
             else:
-                self.name = match_number
+                self.name = name
         self.player1 = player1
         self.player2 = player2
         if result_match is None:
