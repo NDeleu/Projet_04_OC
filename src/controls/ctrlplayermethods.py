@@ -1,6 +1,15 @@
-from src.models import Player
+from src.models import PlayerDisplayed, PlayerRegistered
+from src.views import ShowPlayer
 
 
+class CtrlPlayerMethods:
+    def __init__(self):
+        self.player_registered = PlayerRegistered
+        self.player_displayed = PlayerDisplayed
+        self.show_player = ShowPlayer
+
+
+"""
 class ControlPlayer:
     def __init__(self, manager):
         self.player = Player
@@ -14,7 +23,6 @@ class ControlPlayer:
         self.manager.creat_player_to_json(len(self.manager.list_all_player))
 
     def load_player_by_idplayer(self, identifiant_player):
-        # if self.manager.load_player_to_json_by_idplayer(identifiant_player)
         self.manager.list_all_player.append(
             self.player(**self.manager.load_player_to_json_by_idplayer(identifiant_player)))
 
@@ -40,5 +48,5 @@ class ControlPlayer:
             players.total_point = 0
             self.calcul_total_point(players)
             self.manager.save_total_point_player_to_json(players)
-
+"""
 

@@ -1,5 +1,10 @@
 
+class Match:
+    def __init__(self):
+        pass
 
+
+"""
 class Match:
     def __init__(self, name, player1, player2, result_match=None):
         if isinstance(name, int) or isinstance(name, float):
@@ -25,3 +30,4 @@ class Match:
 
     def __repr__(self):
         return str(self)
+"""

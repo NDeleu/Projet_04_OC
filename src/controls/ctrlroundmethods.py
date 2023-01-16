@@ -1,8 +1,15 @@
-import datetime
-import random
-from src.models import Round
+from src.models import RoundDisplayed, RoundRegistered
+from src.views import ShowRound
 
 
+class CtrlRoundMethods:
+    def __init__(self):
+        self.round_registered = RoundRegistered
+        self.round_displayed = RoundDisplayed
+        self.show_round = ShowRound
+
+
+"""
 class ControlRound:
     def __init__(self, manager, match_control):
         self.round = Round
@@ -154,7 +161,7 @@ class ControlRound:
     # Round : Conditionne l'emploi des fonctions init et show en fonction du fait qu'init est déjà eu lieu ou non
     def test_round(self, tournoi_number, round_number):
         if not self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match:
-            self.init_round_point(tournoi_number)
+            self.init_round_point(tournoi_number) # ici
             self.run_round(tournoi_number, round_number)
             self.show_match_to_record(tournoi_number, round_number)
         else:
@@ -225,3 +232,4 @@ class ControlRound:
 
     def adjust_result_match(self):
         pass
+"""

@@ -1,5 +1,11 @@
 
 class Player:
+    def __init__(self):
+        pass
+
+
+"""
+class Player:
     def __init__(self, name, surname, naissance, identifiant, round_point=0, encountered=None, total_point=0):
         self.name = name
         self.surname = surname
@@ -17,3 +23,4 @@ class Player:
 
     def __repr__(self):
         return str(self)
+"""

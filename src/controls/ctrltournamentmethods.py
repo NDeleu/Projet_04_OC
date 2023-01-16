@@ -1,6 +1,14 @@
-from src.models import Tournoi
+from src.models import Tournament
+from src.views import ShowTournament
 
 
+class CtrlTournamentMethods:
+    def __init__(self):
+        self.tournament = Tournament
+        self.show_tournament = ShowTournament
+
+
+"""
 class ControlTournoi:
     def __init__(self, manager, round_control, player_control):
         self.tournoi = Tournoi
@@ -51,7 +59,7 @@ class ControlTournoi:
 
     def load_add_player_tournoi(self, tournoi_number, identifiant_player):
         self.player_control.load_player_by_idplayer(identifiant_player)
-        self.add_player_tournoi(tournoi_number, self.manager.list_all_player[len(self.manager.list_all_player) - 1])
+        self.add_player_tournoi(tournoi_number, self.manager.list_all_player[len(self.manager.list_all_player)-1])
 
     def add_player_tournoi(self, tournoi_number, player):
         self.manager.list_all_tournoi[tournoi_number-1].player_list.append(player)
@@ -90,3 +98,4 @@ class ControlTournoi:
                 else:
                     self.round_control.test_round(tournoi_number, len(
                         self.manager.list_all_tournoi[tournoi_number-1].round))
+"""

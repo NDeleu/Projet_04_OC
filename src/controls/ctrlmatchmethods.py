@@ -1,6 +1,15 @@
-from src.models import Match
+from src.models import MatchRegistered, MatchDisplayed
+from src.views import ShowMatch
 
 
+class CtrlMatchMethods:
+    def __init__(self):
+        self.match_registered = MatchRegistered
+        self.match_displayed = MatchDisplayed
+        self.show_match = ShowMatch
+
+
+"""
 class ControlMatch:
     def __init__(self, manager):
         self.match = Match
@@ -25,3 +34,4 @@ class ControlMatch:
     def add_result_match(self, tournoi_number, round_number, match_number, result_player1, result_player2):
         self.manager.list_all_tournoi[tournoi_number-1].round[round_number-1].match[match_number-1].result_match = \
             self.input_result_match(tournoi_number, round_number, match_number, result_player1, result_player2)
+"""

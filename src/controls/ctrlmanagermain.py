@@ -1,6 +1,17 @@
 from src.models import Manager
+from src.controls import CtrlManagerCheckMain, CtrlManagerUpdate, CtrlManagerInsert, CtrlManagerFormat
 
 
+class CtrlManagerMain:
+    def __init__(self):
+        self.manager = Manager
+        self.check_main = CtrlManagerCheckMain
+        self.manager_update = CtrlManagerUpdate
+        self.manager_insert = CtrlManagerInsert
+        self.manager_format = CtrlManagerFormat
+
+
+"""
 class ControlManager:
     def __init__(self):
         self.list_all_tournoi = []
@@ -118,6 +129,8 @@ class ControlManager:
 
     def link_player_class(self, dict_to_class):
         for ply in self.list_all_player:
-            if dict_to_class == self.dict_player_to_json(self.list_all_player.index(ply)):
+            if dict_to_class["identifiant"] == ply.identifiant:
+            # if dict_to_class == self.dict_player_to_json(self.list_all_player.index(ply)):
                 return ply
         return False
+"""

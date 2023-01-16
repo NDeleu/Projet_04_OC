@@ -1,5 +1,10 @@
 
+class Round:
+    def __init__(self):
+        pass
 
+
+"""
 class Round:
     def __init__(self, name, start_time, match=None, end_time=None):
         if isinstance(name, int) or isinstance(name, float):
@@ -21,3 +26,4 @@ class Round:
 
     def __repr__(self):
         return str(self)
+"""

@@ -1,5 +1,7 @@
-# from ..models import Player
+from src.controls import CtrlRelationClass
+
 
 class MainControls:
-    pass
+    def __init__(self):
+        self.relation_class = CtrlRelationClass
 
