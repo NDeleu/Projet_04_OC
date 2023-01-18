@@ -1,12 +1,13 @@
-from src.models import RoundDisplayed, RoundRegistered
-from src.views import ShowRound
+from src.models.rounddisplayed import RoundDisplayed
+from src.models.roundregistered import RoundRegistered
+from src.views.showround import ShowRound
 
 
 class CtrlRoundMethods:
     def __init__(self):
         self.round_registered = RoundRegistered
         self.round_displayed = RoundDisplayed
-        self.show_round = ShowRound
+        self.show_round = ShowRound()
 
 
 """

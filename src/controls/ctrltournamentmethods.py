@@ -1,11 +1,11 @@
-from src.models import Tournament
-from src.views import ShowTournament
+from src.models.tournament import Tournament
+from src.views.showtournament import ShowTournament
 
 
 class CtrlTournamentMethods:
     def __init__(self):
         self.tournament = Tournament
-        self.show_tournament = ShowTournament
+        self.show_tournament = ShowTournament()
 
 
 """

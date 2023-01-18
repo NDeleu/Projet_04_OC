@@ -1,14 +1,17 @@
-from src.models import Manager
-from src.controls import CtrlManagerCheckMain, CtrlManagerUpdate, CtrlManagerInsert, CtrlManagerFormat
+from src.models.manager import Manager
+from src.controls.ctrlmanagercheckmain import CtrlManagerCheckMain
+from src.controls.ctrlmanagerupdate import CtrlManagerUpdate
+from src.controls.ctrlmanagerinsert import CtrlManagerInsert
+from src.controls.ctrlmanagerformat import CtrlManagerFormat
 
 
 class CtrlManagerMain:
     def __init__(self):
         self.manager = Manager
-        self.check_main = CtrlManagerCheckMain
-        self.manager_update = CtrlManagerUpdate
-        self.manager_insert = CtrlManagerInsert
-        self.manager_format = CtrlManagerFormat
+        self.check_main = CtrlManagerCheckMain()
+        self.manager_update = CtrlManagerUpdate()
+        self.manager_insert = CtrlManagerInsert()
+        self.manager_format = CtrlManagerFormat()
 
 
 """

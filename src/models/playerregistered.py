@@ -1,4 +1,4 @@
-from src.models import Player
+from src.models.player import Player
 
 
 class PlayerRegistered(Player):

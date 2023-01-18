@@ -1,12 +1,13 @@
-from src.models import PlayerDisplayed, PlayerRegistered
-from src.views import ShowPlayer
+from src.models.playerdisplayed import PlayerDisplayed
+from src.models.playerregistered import PlayerRegistered
+from src.views.showplayer import ShowPlayer
 
 
 class CtrlPlayerMethods:
     def __init__(self):
         self.player_registered = PlayerRegistered
         self.player_displayed = PlayerDisplayed
-        self.show_player = ShowPlayer
+        self.show_player = ShowPlayer()
 
 
 """

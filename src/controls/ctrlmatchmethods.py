@@ -1,12 +1,13 @@
-from src.models import MatchRegistered, MatchDisplayed
-from src.views import ShowMatch
+from src.models.matchregistered import MatchRegistered
+from src.models.matchdisplayed import MatchDisplayed
+from src.views.showmatch import ShowMatch
 
 
 class CtrlMatchMethods:
     def __init__(self):
         self.match_registered = MatchRegistered
         self.match_displayed = MatchDisplayed
-        self.show_match = ShowMatch
+        self.show_match = ShowMatch()
 
 
 """

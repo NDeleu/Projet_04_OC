@@ -1,4 +1,4 @@
-from src.models import Round
+from src.models.round import Round
 
 
 class RoundRegistered(Round):
