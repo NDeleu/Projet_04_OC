@@ -10,7 +10,7 @@ from src.controls.ctrlmanagercheckresults import CtrlManagerCheckResults
 from src.controls.ctrlmanagerformat import CtrlManagerFormat
 from src.controls.ctrlmanagerinsert import CtrlManagerInsert
 from src.controls.ctrlmanagerupdate import CtrlManagerUpdate
-from src.controls.ctrlrelationclass import CtrlRelationClass
+from src.controls.ctrlrelationclass import CtrlRelationClass, LeaveApplication, LeaveTournament
 from src.controls.ctrlroundrunning import CtrlRoundRunning
 from src.controls.ctrltournamentmenu import CtrlTournamentMenu
 from src.controls.ctrltournamentmethods import CtrlTournamentMethods

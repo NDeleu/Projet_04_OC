@@ -1,4 +1,4 @@
-from src.controls.ctrlrelationclass import CtrlRelationClass
+from src.controls.ctrlrelationclass import CtrlRelationClass, LeaveApplication, LeaveTournament
 
 
 class MainControls:
@@ -8,18 +8,26 @@ class MainControls:
         self.tournament_running = False
         self.loaded_tournament = None
         self.leave_application = LeaveApplication()
+        self.leave_tournament = LeaveTournament
 
     def main_run(self):
         while self.running:
             if self.tournament_running:
                 # lancement du tournoi chargé
+                """
+                try: 
+                    self.leave_tour(self.relation_class.tournament_running(self.loaded_tournament))
+                except LeaveTournament:
+                    print(LeaveTournament(loaded_tournament.name))
+                    self.tournament_running = False
+                    loaded_tournament = None
+                """
                 pass
             else:
                 try:
-                    self.leave_app(self.relation_class.main_menu.menu_navigate(
-                        self.relation_class.view_main.view_input.number_choice_input()))
+                    self.leave_app(self.relation_class.main_menu.menu_navigate())
                 except LeaveApplication:
-                    print("bye bye")
+                    print(self.leave_application)
                     self.running = False
 
     def leave_app(self, method_tried):
@@ -27,7 +35,8 @@ class MainControls:
             raise self.leave_application
         return method_tried
 
-
-class LeaveApplication(Exception):
-    pass
+    def leave_tour(self, method_tried):
+        if method_tried is False:
+            raise self.leave_tournament
+        return method_tried
 

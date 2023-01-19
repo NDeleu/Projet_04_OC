@@ -3,7 +3,7 @@
 class ShowNavigateMainMenu:
 
     def show_leave_app():
-        print("Merci d'avoir utilisé notre gestionnaire de tournoi d'échec. \nA bientot !")
+        return "Merci d'avoir utilisé notre gestionnaire de tournoi d'échec. \nA bientot !"
 
     show_leave_app = staticmethod(show_leave_app)
 

@@ -2,10 +2,13 @@ from src.views import ShowNavigateMainMenu
 
 
 class CtrlMainMenu:
-    def __init__(self):
+    def __init__(self, view_main):
         self.show_navigate_main_menu = ShowNavigateMainMenu()
+        self.view_main = view_main
 
-    def menu_navigate(self, answer):
+    def menu_navigate(self):
+        self.show_navigate_main_menu.show_menu_navigate()
+        answer = self.view_main.view_input.number_choice_input()
         if answer == "1":
             # create tournament
             print("\nLa fonction de création de tournoi n'est pas encore implantée.")
