@@ -3,7 +3,7 @@ class ShowErrorInput:
 
     def error_choice_input():
         return "Cette entrée n'est pas attribuée à une action possible ou existante.\n" \
-               "Merci de saisir un numéro relatif à une action proposée ci dessous :"
+               "Merci de saisir un numéro relatif à une action proposée ci dessus :"
 
     error_choice_input = staticmethod(error_choice_input)
 

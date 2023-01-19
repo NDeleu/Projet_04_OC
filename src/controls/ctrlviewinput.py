@@ -1,4 +1,3 @@
-from src.views.formatinput import FormatInput
 from src.views.exceptioninput import ExceptionInput, UnrecognizedInput, NotEnoughCharacters, NotExists, \
     TooManyCharacters, AlreadyExists
 from src.views.showerrorinput import ShowErrorInput
@@ -7,7 +6,6 @@ import datetime
 
 class CtrlViewInput:
     def __init__(self):
-        self.format_input = FormatInput()
         self.exception_input = ExceptionInput()
         self.show_error_input = ShowErrorInput()
 

@@ -8,7 +8,7 @@ class CtrlMainMenu:
 
     def menu_navigate(self):
         self.show_navigate_main_menu.show_menu_navigate()
-        answer = self.view_main.view_input.number_choice_input()
+        answer = self.view_main.view_input.try_choice_input(self.show_navigate_main_menu.list_choice)
         if answer == "1":
             # create tournament
             print("\nLa fonction de création de tournoi n'est pas encore implantée.")

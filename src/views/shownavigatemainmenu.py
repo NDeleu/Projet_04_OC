@@ -1,9 +1,12 @@
 
 
 class ShowNavigateMainMenu:
+    def __init__(self):
+        self.list_choice = [1, 2, 3, 4, 5, 6, 7]
 
     def show_leave_app():
-        return "Merci d'avoir utilisé notre gestionnaire de tournoi d'échec. \nA bientot !"
+        return "Merci d'avoir utilisé notre gestionnaire de tournoi d'échec. \n" \
+               "A bientot !"
 
     show_leave_app = staticmethod(show_leave_app)
 
