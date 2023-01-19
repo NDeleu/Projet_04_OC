@@ -25,6 +25,9 @@ class CtrlMainMenu:
         elif answer == "6":
             # change result matches
             print("\nLa fonction de modification des matchs n'est pas encore implantée")
+        elif answer == "7":
+            # leave application
+            return False
         else:
             # erreur commande
             print("\nerreur de saisie")

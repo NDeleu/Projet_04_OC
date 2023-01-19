@@ -7,6 +7,7 @@ class MainControls:
         self.running = True
         self.tournament_running = False
         self.loaded_tournament = None
+        self.leave_application = LeaveApplication()
 
     def main_run(self):
         while self.running:
@@ -14,14 +15,19 @@ class MainControls:
                 # lancement du tournoi chargé
                 pass
             else:
-                self.control_main_menu()
+                try:
+                    self.leave_app(self.relation_class.main_menu.menu_navigate(
+                        self.relation_class.view_main.view_input.number_choice_input()))
+                except LeaveApplication:
+                    print("bye bye")
+                    self.running = False
 
-    def control_main_menu(self):
-        self.relation_class.main_menu.show_navigate_main_menu.show_menu_navigate()
-        record = self.relation_class.view_main.view_input.number_choice_input()
-        if record == "7":
-            self.relation_class.main_menu.show_navigate_main_menu.show_leave_app()
-            self.running = False
-        else:
-            self.relation_class.main_menu.menu_navigate(record)
+    def leave_app(self, method_tried):
+        if method_tried is False:
+            raise self.leave_application
+        return method_tried
+
+
+class LeaveApplication(Exception):
+    pass
 

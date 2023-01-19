@@ -16,4 +16,3 @@ class CtrlRelationClass:
         self.view_main = CtrlViewMain()
         self.main_menu = CtrlMainMenu()
         self.tournament_menu = CtrlTournamentMenu
-
