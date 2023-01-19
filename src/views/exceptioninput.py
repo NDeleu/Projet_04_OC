@@ -11,7 +11,7 @@ class ExceptionInput:
     def except_unrecognized_input(self, answer, list_given):
         if not answer.isdigit():
             raise ValueError
-        elif answer not in list_given:
+        elif int(answer) not in list_given:
             raise self.unrecognized_input
         return answer
 
