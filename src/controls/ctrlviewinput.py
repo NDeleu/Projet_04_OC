@@ -45,6 +45,17 @@ class CtrlViewInput:
             print(self.show_error_input.error_too_many_characters(len_max))
             return self.try_string_input(setup_input, len_min, len_max)
 
+    def try_description_string_input(self, len_min=1, len_max=999):
+        string_tried = input(f"Saisissez votre description : ")
+        try:
+            return self.exception_input.except_min_max_characters(string_tried, len_min, len_max)
+        except NotEnoughCharacters:
+            print(self.show_error_input.error_not_enough_characters(len_min))
+            return self.try_string_input(len_min, len_max)
+        except TooManyCharacters:
+            print(self.show_error_input.error_too_many_characters(len_max))
+            return self.try_string_input(len_min, len_max)
+
     def try_not_exists(self, setup_input, type_item):
         # recherche dans la base de donnée un element, renvoie vrai s'il ne s'y trouve pas, et leve l'exception
         seek_input = input(f"Saisissez {setup_input} : ")

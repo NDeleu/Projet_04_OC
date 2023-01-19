@@ -24,6 +24,13 @@ class ExceptionInput:
             raise self.too_many_characters
         return answer
 
+    def except_min_max_characters(self, answer, len_min=1, len_max=999):
+        if len(answer) < len_min:
+            raise self.not_enough_characters
+        elif len(answer) > len_max:
+            raise self.too_many_characters
+        return answer
+
     def except_not_exists(self, answer, result_check):
         if result_check:
             raise self.not_exists
