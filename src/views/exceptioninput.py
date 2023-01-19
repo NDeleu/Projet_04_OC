@@ -29,8 +29,12 @@ class ExceptionInput:
             raise self.not_exists
         return answer
 
-    def except_already_exists(self, answer, result_check):
-        if result_check:
+    def except_already_exists(self, answer, result_check, len_min=1, len_max=999):
+        if len(answer) < len_min:
+            raise self.not_enough_characters
+        elif len(answer) > len_max:
+            raise self.too_many_characters
+        elif result_check:
             raise self.already_exists
         return answer
 

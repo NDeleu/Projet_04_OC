@@ -16,7 +16,7 @@ class CtrlViewInput:
         try:
             return datetime.datetime.strptime(date_tried, "%Y-%m-%d").date()
         except ValueError:
-            print("Incorrect data format, should be YYYY-MM-DD, please retry")
+            print(self.show_error_input.error_date_input())
             return self.try_date_input()
 
     def try_id_player_input(self):
@@ -24,62 +24,63 @@ class CtrlViewInput:
         try:
             return self.exception_input.except_invalid_format_id_player(id_player_tried)
         except NotEnoughCharacters:
-            print("not enough characters, please retry")
+            print(self.show_error_input.error_not_enough_characters(6))
             return self.try_id_player_input()
         except TooManyCharacters:
-            print("too many characters, please retry")
+            print(self.show_error_input.error_too_many_characters(6))
             return self.try_id_player_input()
         except ValueError:
-            print("Incorrect data format, should be integer for first two characters, then alpha for next")
+            print(self.show_error_input.error_id_player_input())
             return self.try_id_player_input()
 
-    def try_string_input(self, setup_input="l'information attendue", len_min=1, len_max=999):
+    def try_string_input(self, setup_input, len_min=1, len_max=999):
         string_tried = input(f"Saisissez {setup_input} : ")
         try:
             return self.exception_input.except_alphanum_min_max_characters(string_tried, len_min, len_max)
         except ValueError:
-            print("Incorrect data forme, should be alphanumeric (a-z)(0-9)")
+            print(self.show_error_input.error_value_alphanum_input())
             return self.try_string_input(setup_input, len_min, len_max)
         except NotEnoughCharacters:
-            print("not enough characters, please retry")
+            print(self.show_error_input.error_not_enough_characters(len_min))
             return self.try_string_input(setup_input, len_min, len_max)
         except TooManyCharacters:
-            print("too many characters, please retry")
+            print(self.show_error_input.error_too_many_characters(len_max))
             return self.try_string_input(setup_input, len_min, len_max)
 
-    def try_not_exists(self, setup_input="l'information attendue"):
+    def try_not_exists(self, setup_input, type_item):
         # recherche dans la base de donnée un element, renvoie vrai s'il ne s'y trouve pas, et leve l'exception
         seek_input = input(f"Saisissez {setup_input} : ")
         try:
-            """
-            return self.exception_input.except_not_exists(
-            seek_input, recherchedansbasededonneedansmanager(seek_input))
-            """
+            # return self.exception_input.except_not_exists(seek_input, result_check_method(seek_input))
             pass
         except NotExists:
-            print("Input element not exists, please retry")
-            return self.try_not_exists()
+            print(self.show_error_input.error_not_exists(type_item, seek_input))
+            return self.try_not_exists(setup_input, type_item)
 
-    def try_already_exists(self, setup_input="l'information attendue"):
+    def try_already_exists(self, setup_input, type_item, len_min, len_max):
         # recherche dans la base de donnée un element, renvoie vrai s'il s'y trouve, et leve l'exception
         seek_input = input(f"Saisissez {setup_input} : ")
         try:
-            """
-            return self.exception_input.except_already_exists(
-            seek_input, recherchedansbasededonneedansmanager(seek_input))
-            """
+            # return self.exception_input.except_already_exists(
+            # seek_input, result_check_method(seek_input), len_min, len_max)
             pass
+        except NotEnoughCharacters:
+            print(self.show_error_input.error_not_enough_characters(len_min))
+            return self.try_already_exists(setup_input, type_item, len_min, len_max)
+        except TooManyCharacters:
+            print(self.show_error_input.error_too_many_characters(len_max))
+            return self.try_already_exists(setup_input, type_item, len_min, len_max)
         except AlreadyExists:
-            print("Input element already exists, please retry")
-            return self.try_not_exists()
+            print(self.show_error_input.error_already_exists(type_item, seek_input))
+            return self.try_already_exists(setup_input, type_item, len_min, len_max)
 
     def try_choice_input(self, list_given):
         choice_input = input("Saisissez le numéro correspondant à votre choix : ")
         try:
             return self.exception_input.except_unrecognized_input(choice_input, list_given)
         except ValueError:
-            print("Incorrect data forme, should be numeric (0-9)")
+            print(self.show_error_input.error_value_num_input())
             return self.try_choice_input(list_given)
         except UnrecognizedInput:
-            print("Input enter not registered, please retry")
+            print(self.show_error_input.error_choice_input())
             return self.try_choice_input(list_given)
