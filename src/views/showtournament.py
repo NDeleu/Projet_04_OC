@@ -47,3 +47,8 @@ class ShowTournament:
                f"Elle doit être composée au minimum de {len_min} caractères et au maximum de {len_max} caractères"
 
     init_description_string_tournament_register = staticmethod(init_description_string_tournament_register)
+
+    def validate_creation_tournament(tournament_inst):
+        return f"Le tournoi nommé {tournament_inst} a bien été créé et enregistré dans la base de donnée"
+
+    validate_creation_tournament = staticmethod(validate_creation_tournament)

@@ -2,7 +2,6 @@ from src.models.manager import Manager
 from src.controls.ctrlmanagercheckmain import CtrlManagerCheckMain
 from src.controls.ctrlmanagerupdate import CtrlManagerUpdate
 from src.controls.ctrlmanagerinsert import CtrlManagerInsert
-from src.controls.ctrlmanagerformat import CtrlManagerFormat
 
 
 class CtrlManagerMain:
@@ -11,7 +10,6 @@ class CtrlManagerMain:
         self.check_main = CtrlManagerCheckMain(self.manager)
         self.manager_update = CtrlManagerUpdate(self.manager)
         self.manager_insert = CtrlManagerInsert(self.manager)
-        self.manager_format = CtrlManagerFormat(self.manager)
 
 
 """

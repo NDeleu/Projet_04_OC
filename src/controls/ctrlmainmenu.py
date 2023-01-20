@@ -2,19 +2,21 @@ from src.views import ShowNavigateMainMenu
 
 
 class CtrlMainMenu:
-    def __init__(self, view_main):
+    def __init__(self, view_main, tournament_methods, player_method):
         self.show_navigate_main_menu = ShowNavigateMainMenu()
         self.view_main = view_main
+        self.tournament_methods = tournament_methods
+        self.player_method = player_method
 
     def menu_navigate(self):
         self.show_navigate_main_menu.show_menu_navigate()
         answer = self.view_main.view_input.try_choice_input(self.show_navigate_main_menu.list_choice)
         if answer == "1":
             # create tournament
-            print("\nLa fonction de création de tournoi n'est pas encore implantée.")
+            self.tournament_methods.register_tournament()
         elif answer == "2":
             # create player
-            print("\nLa fonction de création de joueurs n'est pas encore implantée.")
+            self.player_method.register_player()
         elif answer == "3":
             # load tournament
             print("\nLa fonction de chargement et lancement de tournoi n'est pas encore implantée.")

@@ -71,6 +71,18 @@ class CtrlTournamentMethods:
         elif answer == "2":
             return self.default_description
 
+    def init_create_tournament_registered(self):
+        dict_to_record = self.init_dict_tournament_register()
+        return self.tournament(**dict_to_record)
+
+    def register_tournament(self):
+        tournament_instance = self.init_create_tournament_registered()
+        self.manager_main.manager_insert.insert_tournament_to_database(tournament_instance.__dict__)
+        if self.manager_main.check_main.check_models.check_tournament_exists(tournament_instance.name):
+            print(self.show_tournament.validate_creation_tournament(tournament_instance))
+        else:
+            print(self.view_main.view_input.show_error_input.error_record())
+            return self.register_tournament()
 
 """
 class ControlTournoi:

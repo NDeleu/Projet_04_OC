@@ -31,3 +31,8 @@ class ShowPlayer:
 
     init_birthday_player_register = staticmethod(init_birthday_player_register)
 
+    def validate_creation_player(player_inst):
+        return f"Le joueur nommé {player_inst} a bien été créé et enregistré dans la base de donnée"
+
+    validate_creation_player = staticmethod(validate_creation_player)
+

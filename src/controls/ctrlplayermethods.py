@@ -44,6 +44,19 @@ class CtrlPlayerMethods:
         answer = self.view_main.view_input.try_date_input()
         return answer.strftime("%Y-%m-%d")
 
+    def init_create_player_registered(self):
+        dict_to_record = self.init_dict_player_register()
+        return self.player_registered(**dict_to_record)
+
+    def register_player(self):
+        player_instance = self.init_create_player_registered()
+        self.manager_main.manager_insert.insert_player_to_database(player_instance.__dict__)
+        if self.manager_main.check_main.check_models.check_player_exists(player_instance.id_chess):
+            print(self.show_player.validate_creation_player(player_instance))
+        else:
+            print(self.view_main.view_input.show_error_input.error_record())
+            return self.register_player()
+
 """
 class ControlPlayer:
     def __init__(self, manager):

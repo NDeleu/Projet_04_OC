@@ -14,14 +14,17 @@ class CtrlRelationClass:
         self.tournament_methods = CtrlTournamentMethods(self.view_main, self.manager_main)
         self.tournament_running = CtrlTournamentRunning
         self.player_methods = CtrlPlayerMethods(self.view_main, self.manager_main)
-        self.main_menu = CtrlMainMenu(self.view_main)
+        self.main_menu = CtrlMainMenu(self.view_main, self.tournament_methods, self.player_methods)
         self.tournament_menu = CtrlTournamentMenu()
 
 
 class LeaveApplication(Exception):
     def __init__(self):
         self.view_main = CtrlViewMain()
-        self.main_menu = CtrlMainMenu(self.view_main)
+        self.manager_main = CtrlManagerMain()
+        self.tournament_methods = CtrlTournamentMethods(self.view_main, self.manager_main)
+        self.player_methods = CtrlPlayerMethods(self.view_main, self.manager_main)
+        self.main_menu = CtrlMainMenu(self.view_main, self.tournament_methods, self.player_methods)
 
     def __str__(self):
         return self.main_menu.show_navigate_main_menu.show_leave_app()
