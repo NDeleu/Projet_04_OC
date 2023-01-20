@@ -9,11 +9,11 @@ from src.controls.ctrltournamentmenu import CtrlTournamentMenu
 
 class CtrlRelationClass:
     def __init__(self):
-        self.player_methods = CtrlPlayerMethods()
-        self.tournament_methods = CtrlTournamentMethods()
-        self.tournament_running = CtrlTournamentRunning
-        self.manager_main = CtrlManagerMain
         self.view_main = CtrlViewMain()
+        self.manager_main = CtrlManagerMain()
+        self.tournament_methods = CtrlTournamentMethods(self.view_main, self.manager_main)
+        self.tournament_running = CtrlTournamentRunning
+        self.player_methods = CtrlPlayerMethods(self.view_main, self.manager_main)
         self.main_menu = CtrlMainMenu(self.view_main)
         self.tournament_menu = CtrlTournamentMenu()
 

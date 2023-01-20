@@ -1,27 +1,49 @@
 
 class ShowTournament:
-    def __init__(self):
-        self.name_len_min = 3
-        self.name_len_max = 12
-        self.location_len_min = 2
-        self.location_len_max = 12
-        self.time_control_list = [1, 2, 3]
-        self.number_round_choice = [1, 2]
-        self.number_round_number = [4, 5, 6, 7, 8, 9, 10, 11, 12]
-        self.description_choice = [1, 2]
-        self.description_len_min = 1
-        self.description_len_max = 42
 
-    def init_dict_tournament_register(name, location, time_control, number_round, description):
-        return {"name": name,
-                "location": location,
-                "time_control": time_control,
-                "number_round": number_round,
-                "description": description}
-
-    init_dict_tournament_register = staticmethod(init_dict_tournament_register)
-
-    def init_name_tournament_register():
-        print("Veuillez saisir le nom du tournoi")
+    def init_name_tournament_register(len_min, len_max):
+        return f"Veuillez saisir le nom du tournoi. \n" \
+               f"Ce nom doit être unique," \
+               f"soit ne pas être utilisé par un autre tournoi enregistré dans la base de donnée. \n" \
+               f"Il doit être composé au minimum de {len_min} caractères et au maximum de {len_max} caractères"
 
     init_name_tournament_register = staticmethod(init_name_tournament_register)
+
+    def init_location_tournament_register(len_min, len_max):
+        return f"Veuillez saisir le lieu du tournoi. \n" \
+               f"Il doit être composé au minimum de {len_min} caractères et au maximum de {len_max} caractères"
+
+    init_location_tournament_register = staticmethod(init_location_tournament_register)
+
+    def init_time_control_tournament_register():
+        return "Veuillez choisir le type de contrôle du temps que vous désirez pour les matchs de ce tournoi : \n" \
+               "Blitz :          1 \n" \
+               "Coup Rapide :    2 \n" \
+               "Bullet :         3 "
+
+    init_time_control_tournament_register = staticmethod(init_time_control_tournament_register)
+
+    def init_number_round_choice_tournament_register():
+        return "Désirez vous laisser le nombre de rounds par défaut à quatre ? (Recommandé) : \n" \
+               "Oui :    1 \n" \
+               "Non :    2 "
+
+    init_number_round_choice_tournament_register = staticmethod(init_number_round_choice_tournament_register)
+
+    def init_number_round_wanted_tournament_register():
+        return "Veuillez saisir le nombre de rounds désiré pour ce tournoi. "
+
+    init_number_round_wanted_tournament_register = staticmethod(init_number_round_wanted_tournament_register)
+
+    def init_description_choice_tournament_register():
+        return "Désirez vous ajouter une description à ce tournoi ? : \n" \
+               "Oui :    1 \n" \
+               "Non :    2 "
+
+    init_description_choice_tournament_register = staticmethod(init_description_choice_tournament_register)
+
+    def init_description_string_tournament_register(len_min, len_max):
+        return f"Veuillez saisir la description que vous souhaitez joindre à ce tournoi. \n" \
+               f"Elle doit être composée au minimum de {len_min} caractères et au maximum de {len_max} caractères"
+
+    init_description_string_tournament_register = staticmethod(init_description_string_tournament_register)

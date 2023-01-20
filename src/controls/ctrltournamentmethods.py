@@ -3,9 +3,73 @@ from src.views.showtournament import ShowTournament
 
 
 class CtrlTournamentMethods:
-    def __init__(self):
+    def __init__(self, view_main, manager_main):
         self.tournament = Tournament
         self.show_tournament = ShowTournament()
+        self.view_main = view_main
+        self.manager_main = manager_main
+        self.name_len_min = 3
+        self.name_len_max = 20
+        self.location_len_min = 2
+        self.location_len_max = 12
+        self.time_control_list = [1, 2, 3]
+        self.time_control_string_list = ["Blitz", "Coup Rapide", "Bullet"]
+        self.number_round_choice = [1, 2]
+        self.default_number_round = "4"
+        self.description_choice = [1, 2]
+        self.default_description = "Aucune description"
+        self.description_len_min = 1
+        self.description_len_max = 42
+
+    def init_dict_tournament_register(self):
+        return {"name": self.name_tournament_register(),
+                "location": self.location_tournament_register(),
+                "time_control": self.time_control_choice_tournament_register(),
+                "number_round": self.number_round_tournament_register(),
+                "description": self.description_tournament_register()}
+
+    def name_tournament_register(self):
+        print(self.show_tournament.init_name_tournament_register(self.name_len_min, self.name_len_max))
+        answer = self.view_main.view_input.try_string_input(self.name_len_min, self.name_len_max)
+        if self.view_main.view_input.try_already_exists(
+                "nom", answer, self.manager_main.check_main.check_models.check_tournament_exists(answer)):
+            return answer
+        else:
+            return self.name_tournament_register()
+
+    def location_tournament_register(self):
+        print(self.show_tournament.init_location_tournament_register(self.location_len_min, self.location_len_max))
+        return self.view_main.view_input.try_alphanum_string_input(self.location_len_min, self.location_len_max)
+
+    def time_control_choice_tournament_register(self):
+        print(self.show_tournament.init_time_control_tournament_register())
+        answer = self.view_main.view_input.try_choice_input(self.time_control_list)
+        if answer == "1":
+            return self.time_control_string_list[0]
+        elif answer == "2":
+            return self.time_control_string_list[1]
+        elif answer == "3":
+            return self.time_control_string_list[2]
+
+    def number_round_tournament_register(self):
+        print(self.show_tournament.init_number_round_choice_tournament_register())
+        answer = self.view_main.view_input.try_choice_input(self.number_round_choice)
+        if answer == "1":
+            return self.default_number_round
+        elif answer == "2":
+            print(self.show_tournament.init_number_round_wanted_tournament_register())
+            return self.view_main.view_input.try_is_not_digit()
+
+    def description_tournament_register(self):
+        print(self.show_tournament.init_description_choice_tournament_register())
+        answer = self.view_main.view_input.try_choice_input(self.description_choice)
+        if answer == "1":
+            print(self.show_tournament.init_description_string_tournament_register(
+                self.description_len_min, self.description_len_max))
+            return self.view_main.view_input.try_string_input(
+                self.description_len_min, self.description_len_max)
+        elif answer == "2":
+            return self.default_description
 
 
 """

@@ -18,13 +18,13 @@ class ShowErrorInput:
     error_value_alphanum_input = staticmethod(error_value_alphanum_input)
 
     def error_already_exists(type_item, name_instance):
-        return f"Le {type_item} : {name_instance} existe déjà dans la base de donnée. \n" \
+        return f"Les données : {type_item} : {name_instance} existe déjà dans la base de donnée. \n" \
                f"Merci de saisir une valeur distincte."
 
     error_already_exists = staticmethod(error_already_exists)
 
     def error_not_exists(type_item, name_instance):
-        return f"Le {type_item} : {name_instance} n'existe pas dans la base de donnée. \n" \
+        return f"Les données {type_item} : {name_instance} n'existe pas dans la base de donnée. \n" \
                f"Merci de saisir une valeur reconnue."
 
     error_not_exists = staticmethod(error_not_exists)

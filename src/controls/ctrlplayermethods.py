@@ -4,11 +4,45 @@ from src.views.showplayer import ShowPlayer
 
 
 class CtrlPlayerMethods:
-    def __init__(self):
+    def __init__(self, view_main, manager_main):
         self.player_registered = PlayerRegistered
         self.player_displayed = PlayerDisplayed
         self.show_player = ShowPlayer()
+        self.view_main = view_main
+        self.manager_main = manager_main
+        self.name_len_min = 3
+        self.name_len_max = 15
+        self.surname_len_min = 3
+        self.surname_len_max = 15
 
+    def init_dict_player_register(self):
+        return {"name": self.name_player_register(),
+                "surname": self.surname_player_register(),
+                "id_chess": self.id_chess_player_register(),
+                "total_points": 0,
+                "birthday": self.birthday_player_register()}
+
+    def name_player_register(self):
+        print(self.show_player.init_name_player_register(self.name_len_min, self.name_len_max))
+        return self.view_main.view_input.try_alphanum_string_input(self.name_len_min, self.name_len_max)
+
+    def surname_player_register(self):
+        print(self.show_player.init_surname_player_register(self.surname_len_min, self.surname_len_max))
+        return self.view_main.view_input.try_alphanum_string_input(self.surname_len_min, self.surname_len_max)
+
+    def id_chess_player_register(self):
+        print(self.show_player.init_id_chess_player_register())
+        answer = self.view_main.view_input.try_id_player_input()
+        if self.view_main.view_input.try_already_exists(
+                "identifiant joueur", answer, self.manager_main.check_main.check_models.check_player_exists(answer)):
+            return answer
+        else:
+            return self.id_chess_player_register()
+
+    def birthday_player_register(self):
+        print(self.show_player.init_birthday_player_register())
+        answer = self.view_main.view_input.try_date_input()
+        return answer.strftime("%Y-%m-%d")
 
 """
 class ControlPlayer:
