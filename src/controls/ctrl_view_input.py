@@ -1,6 +1,6 @@
-from src.views.exceptioninput import ExceptionInput, UnrecognizedInput, NotEnoughCharacters, NotExists, \
+from src.views.view_exception_input import ExceptionInput, UnrecognizedInput, NotEnoughCharacters, NotExists, \
     TooManyCharacters, AlreadyExists
-from src.views.showerrorinput import ShowErrorInput
+from src.views.view_show_error_input import ShowErrorInput
 import datetime
 
 

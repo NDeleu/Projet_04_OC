@@ -1,5 +1,5 @@
-from src.controls.ctrlmanagercheckresults import CtrlManagerCheckResults
-from src.controls.ctrlmanagercheckmodels import CtrlManagerCheckModels
+from src.controls.ctrl_manager_check_results import CtrlManagerCheckResults
+from src.controls.ctrl_manager_check_models import CtrlManagerCheckModels
 
 
 class CtrlManagerCheckMain:

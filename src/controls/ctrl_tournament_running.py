@@ -1,5 +1,5 @@
-from src.controls.ctrlroundrunning import CtrlRoundRunning
-from src.controls.ctrlroundmethods import CtrlRoundMethods
+from src.controls.ctrl_round_running import CtrlRoundRunning
+from src.controls.ctrl_round_methods import CtrlRoundMethods
 
 
 class CtrlTournamentRunning:

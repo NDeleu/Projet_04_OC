@@ -1,5 +1,5 @@
-from src.models.tournament import Tournament
-from src.views.showtournament import ShowTournament
+from src.models.mdl_tournament import Tournament
+from src.views.view_show_tournament import ShowTournament
 
 
 class CtrlTournamentMethods:

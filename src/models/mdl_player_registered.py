@@ -1,4 +1,4 @@
-from src.models.player import Player
+from src.models.mdl_player import Player
 
 
 class PlayerRegistered(Player):

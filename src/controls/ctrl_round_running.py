@@ -1,4 +1,4 @@
-from src.controls.ctrlmatchmethods import CtrlMatchMethods
+from src.controls.ctrl_match_methods import CtrlMatchMethods
 
 
 class CtrlRoundRunning:

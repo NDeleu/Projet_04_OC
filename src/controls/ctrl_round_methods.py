@@ -1,6 +1,6 @@
-from src.models.rounddisplayed import RoundDisplayed
-from src.models.roundregistered import RoundRegistered
-from src.views.showround import ShowRound
+from src.models.mdl_round_displayed import RoundDisplayed
+from src.models.mdl_round_registered import RoundRegistered
+from src.views.view_show_round import ShowRound
 
 
 class CtrlRoundMethods:

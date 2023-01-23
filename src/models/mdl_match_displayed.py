@@ -1,4 +1,4 @@
-from src.models.match import Match
+from src.models.mdl_match import Match
 
 
 class MatchDisplayed(Match):

@@ -1,5 +1,5 @@
-from src.controls.ctrlviewresults import CtrlViewResults
-from src.controls.ctrlviewinput import CtrlViewInput
+from src.controls.ctrl_view_results import CtrlViewResults
+from src.controls.ctrl_view_input import CtrlViewInput
 
 
 class CtrlViewMain:

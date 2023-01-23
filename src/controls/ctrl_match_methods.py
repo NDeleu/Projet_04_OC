@@ -1,6 +1,6 @@
-from src.models.matchregistered import MatchRegistered
-from src.models.matchdisplayed import MatchDisplayed
-from src.views.showmatch import ShowMatch
+from src.models.mdl_match_registered import MatchRegistered
+from src.models.mdl_match_displayed import MatchDisplayed
+from src.views.view_show_match import ShowMatch
 
 
 class CtrlMatchMethods:

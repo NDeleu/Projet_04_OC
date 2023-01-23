@@ -1,4 +1,4 @@
-from src.controls.ctrlrelationclass import CtrlRelationClass, LeaveApplication, LeaveTournament
+from src.controls.ctrl_relation_class import CtrlRelationClass, LeaveApplication, LeaveTournament
 
 
 class MainControls:

@@ -1,6 +1,6 @@
-from src.models.playerdisplayed import PlayerDisplayed
-from src.models.playerregistered import PlayerRegistered
-from src.views.showplayer import ShowPlayer
+from src.models.mdl_player_displayed import PlayerDisplayed
+from src.models.mdl_player_registered import PlayerRegistered
+from src.views.view_show_player import ShowPlayer
 
 
 class CtrlPlayerMethods:

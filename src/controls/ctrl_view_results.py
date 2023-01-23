@@ -1,4 +1,4 @@
-from src.views.showresults import ShowResults
+from src.views.view_show_results import ShowResults
 
 
 class CtrlViewResults:

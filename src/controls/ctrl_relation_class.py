@@ -1,10 +1,10 @@
-from src.controls.ctrlplayermethods import CtrlPlayerMethods
-from src.controls.ctrltournamentmethods import CtrlTournamentMethods
-from src.controls.ctrltournamentrunning import CtrlTournamentRunning
-from src.controls.ctrlmanagermain import CtrlManagerMain
-from src.controls.ctrlviewmain import CtrlViewMain
-from src.controls.ctrlmainmenu import CtrlMainMenu
-from src.controls.ctrltournamentmenu import CtrlTournamentMenu
+from src.controls.ctrl_player_methods import CtrlPlayerMethods
+from src.controls.ctrl_tournament_methods import CtrlTournamentMethods
+from src.controls.ctrl_tournament_running import CtrlTournamentRunning
+from src.controls.ctrl_manager_main import CtrlManagerMain
+from src.controls.ctrl_view_main import CtrlViewMain
+from src.controls.ctrl_main_menu import CtrlMainMenu
+from src.controls.ctrl_tournament_menu import CtrlTournamentMenu
 
 
 class CtrlRelationClass:

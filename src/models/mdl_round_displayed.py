@@ -1,4 +1,4 @@
-from src.models.round import Round
+from src.models.mdl_round import Round
 
 
 class RoundDisplayed(Round):
