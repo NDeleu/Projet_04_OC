@@ -26,7 +26,8 @@ class ShowErrorInput:
 
     def error_not_exists(type_item, name_instance):
         return f"\nERREUR : Les données {type_item} : {name_instance} n'existe pas dans la base de donnée. \n" \
-               f"Merci de saisir une valeur reconnue. \n"
+               f"Merci de saisir une valeur reconnue. \n" \
+               f"Vous pouvez à cette fin consulter la base de donnée depuis le menu principal \n"
 
     error_not_exists = staticmethod(error_not_exists)
 

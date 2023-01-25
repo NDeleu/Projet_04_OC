@@ -19,3 +19,11 @@ class CtrlManagerCheckModels:
                 pass
         return False
 
+    def open_load_tournament(self, tournament_name):
+        for tournament in self.manager_to_check_models.db_tournaments.all():
+            if tournament["name"] == tournament_name:
+                return tournament
+            else:
+                pass
+        return None
+

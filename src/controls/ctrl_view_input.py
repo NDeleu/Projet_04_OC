@@ -64,15 +64,15 @@ class CtrlViewInput:
             print(self.show_error_input.error_too_many_characters(len_max))
             return self.try_string_input(len_min, len_max)
 
-    def try_not_exists(self, type_item, result_check):
+    def try_not_exists(self, type_item, input_given, result_check):
         # recherche dans la base de donnée un element, renvoie vrai s'il ne s'y trouve pas, et leve l'exception
-        seek_input = input(f"Saisis : ")
+        seek_input = input_given
         try:
             return self.exception_input.except_not_exists(
                 seek_input, result_check)
         except NotExists:
             print(self.show_error_input.error_not_exists(type_item, seek_input))
-            return self.try_not_exists(type_item, result_check)
+            return False
 
     def try_already_exists(self, type_item, input_given, result_check):
         # recherche dans la base de donnée un element, renvoie vrai s'il s'y trouve, et leve l'exception

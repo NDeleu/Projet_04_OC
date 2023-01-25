@@ -39,7 +39,7 @@ class ExceptionInput:
         return answer
 
     def except_not_exists(self, answer, result_check):
-        if result_check:
+        if not result_check:
             raise self.not_exists
         return answer
 

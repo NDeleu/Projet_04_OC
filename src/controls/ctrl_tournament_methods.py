@@ -84,6 +84,24 @@ class CtrlTournamentMethods:
             print(self.view_main.view_input.show_error_input.error_record())
             return self.register_tournament()
 
+    def load_tournament(self):
+        print(self.show_tournament.init_load_tournament(self.name_len_min, self.name_len_max))
+        answer = self.view_main.view_input.try_string_input(self.name_len_min, self.name_len_max)
+        if self.view_main.view_input.try_not_exists(
+                "nom", answer, self.manager_main.check_main.check_models.check_tournament_exists(answer)):
+            return answer
+        else:
+            return None
+
+    def tournament_keep_running():
+        answer = input("1 pour quitter, 2 pour continuer")
+        if answer == "1":
+            return False
+        elif answer == "2":
+            return True
+
+    tournament_keep_running = staticmethod(tournament_keep_running)
+
 """
 class ControlTournoi:
     def __init__(self, manager, round_control, player_control):

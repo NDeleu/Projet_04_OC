@@ -52,3 +52,9 @@ class ShowTournament:
         return f"Le tournoi nommé {tournament_inst} a bien été créé et enregistré dans la base de donnée"
 
     validate_creation_tournament = staticmethod(validate_creation_tournament)
+
+    def init_load_tournament(len_min, len_max):
+        return f"Veuillez saisir le nom du tournoi que vous souhaitez charger et lancer. \n" \
+               f"Il doit être composé au minimum de {len_min} caractères et au maximum de {len_max} caractères"
+
+    init_load_tournament = staticmethod(init_load_tournament)

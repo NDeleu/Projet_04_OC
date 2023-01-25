@@ -19,7 +19,7 @@ class CtrlMainMenu:
             self.player_method.register_player()
         elif answer == "3":
             # load tournament
-            print("\nLa fonction de chargement et lancement de tournoi n'est pas encore implantée.")
+            return self.tournament_methods.load_tournament()
         elif answer == "4":
             # pandas
             print("\nLa fonction de consultation des résultats, "
