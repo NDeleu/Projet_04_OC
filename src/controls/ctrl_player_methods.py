@@ -57,6 +57,22 @@ class CtrlPlayerMethods:
             print(self.view_main.view_input.show_error_input.error_record())
             return self.register_player()
 
+    def register_player_for_tournament(self):
+        player_instance = self.init_create_player_registered()
+        self.manager_main.manager_insert.insert_player_to_database(player_instance.__dict__)
+        if self.manager_main.check_main.check_models.check_player_exists(player_instance.id_chess):
+            print(self.show_player.validate_creation_player(player_instance))
+            return player_instance.id_chess
+        else:
+            print(self.view_main.view_input.show_error_input.error_record())
+            return False
+
+    def id_player_to_inst_player_displayed(self, id_player):
+        return self.player_displayed(
+            **self.manager_main.manager_format.player_register_to_displayed(
+                self.manager_main.check_main.check_models.open_load_player(id_player)))
+
+
 """
 class ControlPlayer:
     def __init__(self, manager):

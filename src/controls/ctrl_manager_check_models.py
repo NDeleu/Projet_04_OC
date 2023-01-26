@@ -1,3 +1,5 @@
+import copy
+
 
 class CtrlManagerCheckModels:
     def __init__(self, manager):
@@ -23,6 +25,14 @@ class CtrlManagerCheckModels:
         for tournament in self.manager_to_check_models.db_tournaments.all():
             if tournament["name"] == tournament_name:
                 return tournament
+            else:
+                pass
+        return None
+
+    def open_load_player(self, id_player):
+        for player in self.manager_to_check_models.db_players.all():
+            if player["id_chess"] == id_player:
+                return player
             else:
                 pass
         return None

@@ -8,7 +8,7 @@ from src.controls.ctrl_manager_check_main import CtrlManagerCheckMain
 from src.controls.ctrl_manager_check_models import CtrlManagerCheckModels
 from src.controls.ctrl_manager_check_results import CtrlManagerCheckResults
 from src.controls.ctrl_manager_insert import CtrlManagerInsert
-from src.controls.ctrl_manager_update import CtrlManagerUpdate
+from src.controls.ctrl_manager_format import CtrlManagerFormat
 from src.controls.ctrl_relation_class import CtrlRelationClass, LeaveApplication, LeaveTournament
 from src.controls.ctrl_round_running import CtrlRoundRunning
 from src.controls.ctrl_tournament_menu import CtrlTournamentMenu

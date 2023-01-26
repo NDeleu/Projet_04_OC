@@ -3,11 +3,12 @@ from src.views.view_show_tournament import ShowTournament
 
 
 class CtrlTournamentMethods:
-    def __init__(self, view_main, manager_main):
+    def __init__(self, view_main, manager_main, player_methods):
         self.tournament = Tournament
         self.show_tournament = ShowTournament()
         self.view_main = view_main
         self.manager_main = manager_main
+        self.player_methods = player_methods
         self.name_len_min = 3
         self.name_len_max = 20
         self.location_len_min = 2
@@ -93,7 +94,81 @@ class CtrlTournamentMethods:
         else:
             return None
 
-    def tournament_keep_running():
+    def load_id_player_to_tournament(self):
+        print(self.show_tournament.show_load_id_player_to_tournament())
+        answer = self.view_main.view_input.try_id_player_input()
+        if self.view_main.view_input.try_not_exists(
+                "identifiant joueur", answer, self.manager_main.check_main.check_models.check_player_exists(answer)):
+            return answer
+        else:
+            return False
+
+    def create_id_player_to_tournament(self):
+        answer = self.player_methods.register_player_for_tournament()
+        if answer is False:
+            return False
+        else:
+            return answer
+
+    def choice_id_player_to_tournament(self, player_list):
+        print(self.show_tournament.show_choice_id_player_to_tournament())
+        answer = self.view_main.view_input.try_choice_input([1, 2])
+        if answer == "1":
+            answer_1_a = self.load_id_player_to_tournament()
+            if answer_1_a is False:
+                return self.choice_id_player_to_tournament(player_list)
+            else:
+                answer_1_b = self.check_player_in_player_list_tournament(player_list, answer_1_a)
+                if answer_1_b is False:
+                    return self.choice_id_player_to_tournament(player_list)
+                else:
+                    return answer_1_b
+        elif answer == "2":
+            answer_2_a = self.create_id_player_to_tournament()
+            if answer_2_a is False:
+                return self.choice_id_player_to_tournament(player_list)
+            else:
+                return answer_2_a
+
+    def check_player_in_player_list_tournament(self, player_list, tested_id_player):
+        if not player_list:
+            return tested_id_player
+        else:
+            for player in player_list:
+                if player.id_chess == tested_id_player:
+                    print(self.show_tournament.show_error_check_player_in_player_list_tournament())
+                    return False
+            return tested_id_player
+
+    def save_list_player_to_database(self, tournament_name, list_player):
+        self.manager_main.manager_insert.insert_players_to_tournament_to_database(
+            tournament_name,
+            self.manager_main.manager_format.format_update_players_to_tournament_to_database(list_player))
+
+    def replace_player_list_dict_to_instance(self, list_player):
+        new_list = []
+        for player_dict in list_player:
+            new_list.append(self.player_methods.id_player_to_inst_player_displayed(player_dict["id_chess"]))
+        return new_list
+
+    def completed_player_in_list_player(self, list_player):
+        print(self.show_tournament.show_completed_player_in_list_player())
+        self.show_tournament.show_all_player_in_list_player(list_player)
+        print("\n")
+
+    def not_enough_player_in_list_player(self, list_player):
+        print(self.show_tournament.show_not_enough_player_in_list_player(list_player))
+        self.show_tournament.show_all_player_in_list_player(list_player)
+        print("\n")
+
+    def no_player_in_list_player(self):
+        print(self.show_tournament.show_no_player_in_list_player())
+        print("\n")
+
+    def success_add_player(self):
+        print(self.show_tournament.show_success_add_player())
+
+    def tournament_keep_running(): # à modifier plus tard
         answer = input("1 pour quitter, 2 pour continuer")
         if answer == "1":
             return False
@@ -101,6 +176,7 @@ class CtrlTournamentMethods:
             return True
 
     tournament_keep_running = staticmethod(tournament_keep_running)
+
 
 """
 class ControlTournoi:
