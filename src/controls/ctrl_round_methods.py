@@ -1,13 +1,61 @@
 from src.models.mdl_round_displayed import RoundDisplayed
 from src.models.mdl_round_registered import RoundRegistered
 from src.views.view_show_round import ShowRound
+import datetime
 
 
 class CtrlRoundMethods:
-    def __init__(self):
+    def __init__(self, manager_main):
         self.round_registered = RoundRegistered
         self.round_displayed = RoundDisplayed
         self.show_round = ShowRound()
+        self.manager_main = manager_main
+
+    def init_dict_round_register(name, tournament_name):
+        return {"name": name,
+                "tournament_name": tournament_name,
+                "start_time": datetime.datetime.now().strftime("%Y-%m-%d")}
+
+    init_dict_round_register = staticmethod(init_dict_round_register)
+
+    def init_create_round_registered(self, name, tournament_name):
+        dict_to_record = self.init_dict_round_register(name, tournament_name)
+        return self.round_registered(**dict_to_record)
+
+    def register_round(self, name, tournament_name):
+        round_instance = self.init_create_round_registered(name, tournament_name)
+        self.manager_main.manager_insert.insert_rounds_to_database(round_instance.__dict__)
+
+    def load_round_to_tournament(self, name, tournament_name):
+        return self.round_displayed(**
+                                    self.manager_main.manager_format.round_register_to_displayed(
+                                        self.manager_main.check_main.check_models.open_load_rounds(
+                                            name, tournament_name)))
+
+    def replace_rounds_list_dict_to_instance(self, list_round, tournament_name):
+        new_list = []
+        for rounds_dict in list_round:
+            new_list.append(self.load_round_to_tournament(rounds_dict, tournament_name))
+        return new_list
+
+    def register_and_load_round_to_tournament(self, name, tournament_name):
+        self.register_round(name, tournament_name)
+        return self.load_round_to_tournament(name, tournament_name)
+
+    def save_list_round_to_database(self, tournament_name, list_rounds):
+        self.manager_main.manager_insert.insert_rounds_to_tournament_to_database(
+            tournament_name,
+            self.manager_main.manager_format.format_update_rounds_to_tournament_to_database(list_rounds))
+
+    def round_keep_running(): # à modifier plus tard
+        answer = input("1 pour quitter, 2 pour continuer")
+        if answer == "1":
+            return False
+        elif answer == "2":
+            return True
+
+    round_keep_running = staticmethod(round_keep_running)
+
 
 
 """

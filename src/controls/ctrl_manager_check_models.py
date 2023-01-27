@@ -37,3 +37,49 @@ class CtrlManagerCheckModels:
                 pass
         return None
 
+    def open_load_rounds(self, name, tournament_name):
+        for rounds in self.manager_to_check_models.db_rounds.all():
+            if rounds["tournament_name"] == tournament_name:
+                if rounds["name"] == name:
+                    return rounds
+                else:
+                    pass
+            else:
+                pass
+        return None
+
+    def return_date_start_round(self, name, tournament_name):
+        for rounds in self.manager_to_check_models.db_rounds.all():
+            if rounds["tournament_name"] == tournament_name:
+                if rounds["name"] == name:
+                    return rounds["start_time"]
+                else:
+                    pass
+            else:
+                pass
+        return None
+
+    def return_date_end_round(self, name, tournament_name):
+        for rounds in self.manager_to_check_models.db_rounds.all():
+            if rounds["tournament_name"] == tournament_name:
+                if rounds["name"] == name:
+                    return rounds["end_time"]
+                else:
+                    pass
+            else:
+                pass
+        return None
+
+    def check_end_time_rounds_exists(self, name, tournament_name):
+        for rounds in self.manager_to_check_models.db_rounds.all():
+            if rounds["tournament_name"] == tournament_name:
+                if rounds["name"] == name:
+                    if rounds["end_time"] != "Le Round n'est pas encore terminé":
+                        return True
+                    else:
+                        pass
+                else:
+                    pass
+            else:
+                pass
+        return False

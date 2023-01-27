@@ -9,6 +9,7 @@ class CtrlTournamentMethods:
         self.view_main = view_main
         self.manager_main = manager_main
         self.player_methods = player_methods
+        self.leave_round = LeaveRound()
         self.name_len_min = 3
         self.name_len_max = 20
         self.location_len_min = 2
@@ -168,6 +169,29 @@ class CtrlTournamentMethods:
     def success_add_player(self):
         print(self.show_tournament.show_success_add_player())
 
+    def save_list_date_to_database(self, tournament_name, list_date):
+        self.manager_main.manager_insert.insert_date_to_tournament_to_database(
+            tournament_name, list_date)
+
+    def update_date_start_round(self, name, tournament_name, list_date):
+        answer = self.manager_main.check_main.check_models.return_date_start_round(name, tournament_name)
+        if answer not in list_date:
+            return answer
+        else:
+            return None
+
+    def update_date_end_round(self, name, tournament_name, list_date):
+        answer = self.manager_main.check_main.check_models.return_date_end_round(name, tournament_name)
+        if answer not in list_date:
+            return answer
+        else:
+            return None
+
+    def leave_rounds(self, method_tried):
+        if method_tried is False:
+            raise self.leave_round
+        return method_tried
+
     def tournament_keep_running(): # à modifier plus tard
         answer = input("1 pour quitter, 2 pour continuer")
         if answer == "1":
@@ -177,6 +201,9 @@ class CtrlTournamentMethods:
 
     tournament_keep_running = staticmethod(tournament_keep_running)
 
+
+class LeaveRound(Exception):
+    pass
 
 """
 class ControlTournoi:

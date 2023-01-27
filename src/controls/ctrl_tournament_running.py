@@ -1,12 +1,13 @@
 from src.controls.ctrl_round_running import CtrlRoundRunning
 from src.controls.ctrl_round_methods import CtrlRoundMethods
+from src.controls.ctrl_tournament_methods import LeaveRound
 
 
 class CtrlTournamentRunning:
     def __init__(self, tournament_methods):
-        self.round_methods = CtrlRoundMethods()
-        self.round_running = CtrlRoundRunning()
         self.tournament_methods = tournament_methods
+        self.round_methods = CtrlRoundMethods(self.tournament_methods.manager_main)
+        self.round_running = CtrlRoundRunning(self.round_methods)
         self.tournament_main = None
         self.tournament_main_running = True
 
@@ -19,9 +20,6 @@ class CtrlTournamentRunning:
                                                                       self.tournament_methods.manager_main.check_main.
                                                                       check_models.open_load_tournament(
                                                                           tournament_name))
-            print("name : ", self.tournament_main.name)
-            print("lieu : ", self.tournament_main.location)
-            print("nombre de round : ", self.tournament_main.number_round)
 
             # Gestion de la liste des joueurs
             if not self.tournament_main.player_list:
@@ -56,7 +54,83 @@ class CtrlTournamentRunning:
                     # Message en cas de liste des joueurs complétée
                     if len(self.tournament_main.player_list) == 8:
                         self.tournament_methods.completed_player_in_list_player(self.tournament_main.player_list)
+
                 else:
-                    pass
+
+                    # s'il n'y a pas de rounds dans la liste round du tournoi
+                    if not self.tournament_main.rounds:
+                        # Création d'un round 1 et ajout de ce round dans la liste des rounds du tournoi
+                        self.tournament_main.rounds.append(
+                            self.round_methods.register_and_load_round_to_tournament(
+                                "Round1", self.tournament_main.name))
+                        # Sauvegarde de la liste round du tournoi dans la database
+                        self.round_methods.save_list_round_to_database(
+                            self.tournament_main.name, self.tournament_main.rounds)
+                        # Actualisation des dates du tournoi start time
+                        if self.tournament_methods.update_date_start_round(
+                                "Round1", self.tournament_main.name, self.tournament_main.date) is not None:
+                            self.tournament_main.date.append(
+                                self.tournament_methods.update_date_start_round(
+                                    "Round1", self.tournament_main.name, self.tournament_main.date))
+                        else:
+                            pass
+                        # Sauvegarde de la liste des dates dans la database
+                        self.tournament_methods.save_list_date_to_database(
+                            self.tournament_main.name, self.tournament_main.date)
+
+                    else:
+                        # Modifie la liste de round de liste de dictionnaire à liste d'instance de classe
+                        self.tournament_main.rounds = self.round_methods.replace_rounds_list_dict_to_instance(
+                            self.tournament_main.rounds, self.tournament_main.name)
+                        # Remet dans l'ordre les rounds dans la liste tournoi
+                        self.tournament_main.rounds.sort()
+
+                        # si le dernier round de la liste round du tournoi a une date de fin
+                        if self.tournament_methods.manager_main.check_main.check_models.check_end_time_rounds_exists(
+                                self.tournament_main.rounds[len(self.tournament_main.rounds)-1].name,
+                                self.tournament_main.name) is True:
+
+                            # Actualisation des dates du tournoi end time
+                            if self.tournament_methods.update_date_end_round(
+                                    self.tournament_main.rounds[len(self.tournament_main.rounds)-1].name,
+                                    self.tournament_main.name, self.tournament_main.date) is not None:
+                                self.tournament_main.date.append(
+                                    self.tournament_methods.update_date_start_round(
+                                        self.tournament_main.rounds[len(self.tournament_main.rounds)-1].name,
+                                        self.tournament_main.name, self.tournament_main.date))
+                            else:
+                                pass
+                            # Sauvegarde de la liste des dates dans la database
+                            self.tournament_methods.save_list_date_to_database(
+                                self.tournament_main.name, self.tournament_main.date)
+
+                            if len(self.tournament_main.rounds) == self.tournament_main.number_round:
+                                print("fin du tournoi")
+
+                            else:
+                                # Création d'un round et ajout de ce round dans la liste des rounds du tournoi
+                                self.tournament_main.rounds.append(
+                                    self.round_methods.register_and_load_round_to_tournament(
+                                        f"Round{len(self.tournament_main.rounds)+1}", self.tournament_main.name))
+                                # Sauvegarde de la liste round du tournoi dans la database
+                                self.round_methods.save_list_round_to_database(
+                                    self.tournament_main.name, self.tournament_main.rounds)
+                                # Actualisation des dates du tournoi start time
+                                if self.tournament_methods.update_date_start_round(
+                                        f"Round{len(self.tournament_main.rounds)}",
+                                        self.tournament_main.name, self.tournament_main.date) is not None:
+                                    self.tournament_main.date.append(
+                                        self.tournament_methods.update_date_start_round(
+                                            f"Round{len(self.tournament_main.rounds)}",
+                                            self.tournament_main.name, self.tournament_main.date))
+
+                        else:
+                            try:
+                                self.tournament_methods.leave_rounds(
+                                    self.round_running.round_run(f"Round{len(self.tournament_main.rounds)}",
+                                                             self.tournament_main.name,
+                                                                              self.tournament_main.player_list))
+                            except LeaveRound:
+                                self.tournament_main_running = False
 
             self.tournament_main_running = self.tournament_methods.tournament_keep_running()

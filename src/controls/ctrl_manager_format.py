@@ -18,7 +18,7 @@ class CtrlManagerFormat:
 
     def match_register_to_displayed(dict_receive):
         dict_return = {"name": dict_receive["name"],
-                       "round_name": ["round_name"], "tournament_name": ["tournament_name"]}
+                       "round_name": dict_receive["round_name"], "tournament_name": dict_receive["tournament_name"]}
         return dict_return
 
     match_register_to_displayed = staticmethod(match_register_to_displayed)
@@ -30,3 +30,11 @@ class CtrlManagerFormat:
         return list_return
 
     format_update_players_to_tournament_to_database = staticmethod(format_update_players_to_tournament_to_database)
+
+    def format_update_rounds_to_tournament_to_database(list_rounds):
+        list_return = []
+        for rounds in list_rounds:
+            list_return.append(rounds.__dict__)
+        return list_return
+
+    format_update_rounds_to_tournament_to_database = staticmethod(format_update_rounds_to_tournament_to_database)
