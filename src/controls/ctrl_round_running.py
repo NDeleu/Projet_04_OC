@@ -22,6 +22,9 @@ class CtrlRoundRunning:
                                                                       round_name, tournament_name))
 
         self.player_list = copy.deepcopy(list_player)
+        print(self.player_list)
+        print(self.round_main.name)
+        print(self.round_main.tournament_name)
 
         """
         if not round_main.match:

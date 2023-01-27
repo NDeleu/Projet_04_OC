@@ -35,7 +35,7 @@ class CtrlRoundMethods:
     def replace_rounds_list_dict_to_instance(self, list_round, tournament_name):
         new_list = []
         for rounds_dict in list_round:
-            new_list.append(self.load_round_to_tournament(rounds_dict, tournament_name))
+            new_list.append(self.load_round_to_tournament(rounds_dict["name"], tournament_name))
         return new_list
 
     def register_and_load_round_to_tournament(self, name, tournament_name):
