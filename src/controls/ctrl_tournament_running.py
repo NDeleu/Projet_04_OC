@@ -13,6 +13,7 @@ class CtrlTournamentRunning:
 
     def tournament_run(self, tournament_name):
         if self.tournament_main_running is False:
+            self.tournament_main_running = True
             return False
         else:
 
@@ -128,9 +129,9 @@ class CtrlTournamentRunning:
                             try:
                                 self.tournament_methods.leave_rounds(
                                     self.round_running.round_run(f"Round{len(self.tournament_main.rounds)}",
-                                                             self.tournament_main.name,
-                                                                              self.tournament_main.player_list))
+                                                                 self.tournament_main.name,
+                                                                 self.tournament_main.player_list))
                             except LeaveRound:
                                 self.tournament_main_running = False
 
-            self.tournament_main_running = self.tournament_methods.tournament_keep_running()
+        self.tournament_main_running = self.tournament_methods.tournament_keep_running()

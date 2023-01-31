@@ -13,6 +13,7 @@ class CtrlRoundRunning:
 
     def round_run(self, round_name, tournament_name, list_player):
         if self.round_main_running is False:
+            self.round_main_running = True
             return False
         else:
 
@@ -35,4 +36,5 @@ class CtrlRoundRunning:
             else:
                 proposer d'insérer les résultats des matchs
         """
+
         self.round_main_running = self.round_methods.round_keep_running()
