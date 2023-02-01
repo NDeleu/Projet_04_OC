@@ -1,3 +1,6 @@
+import copy
+import random
+
 from src.models.mdl_round_displayed import RoundDisplayed
 from src.models.mdl_round_registered import RoundRegistered
 from src.views.view_show_round import ShowRound
@@ -5,11 +8,13 @@ import datetime
 
 
 class CtrlRoundMethods:
-    def __init__(self, manager_main):
+    def __init__(self, manager_main, player_methods, view_main):
         self.round_registered = RoundRegistered
         self.round_displayed = RoundDisplayed
         self.show_round = ShowRound()
         self.manager_main = manager_main
+        self.player_methods = player_methods
+        self.view_main = view_main
 
     def init_dict_round_register(name, tournament_name):
         return {"name": name,
@@ -47,6 +52,34 @@ class CtrlRoundMethods:
             tournament_name,
             self.manager_main.manager_format.format_update_rounds_to_tournament_to_database(list_rounds))
 
+    def init_first_round(self, player_list):
+        list_id_and_couple_player = []
+        list_player = copy.deepcopy(player_list)
+        random.shuffle(list_player)
+        for y in range(int(len(list_player)/2)):
+            list_id_and_couple_player.append((y+1,
+                                              self.couple_player_match(list_player[y],
+                                                                       list_player[y+(int(len(list_player)/2))])))
+        return list_id_and_couple_player
+
+    def init_other_round(self):
+        pass
+
+    def couple_player_match(player1, player2):
+        return player1, player2
+
+    couple_player_match = staticmethod(couple_player_match)
+
+    def check_all_match_played(list_match):
+        for match in list_match:
+            if not match.result_match:
+                return False
+            else:
+                pass
+        return True
+
+    check_all_match_played = staticmethod(check_all_match_played)
+
     def round_keep_running(): # à modifier plus tard
         answer = input("1 pour quitter, 2 pour continuer")
         if answer == "1":
@@ -56,6 +89,19 @@ class CtrlRoundMethods:
 
     round_keep_running = staticmethod(round_keep_running)
 
+    def show_end_round(self, round_name):
+        print(self.show_round.init_show_end_round(round_name))
+        print(self.show_round.init_show_result_match())
+
+    def add_end_time_round(self, tournament_name, round_name):
+        self.manager_main.manager_insert.insert_end_time_to_rounds_to_database(
+            tournament_name, round_name, datetime.datetime.now().strftime("%Y-%m-%d"))
+
+    def show_create_round(self, round_name):
+        print(self.show_round.init_show_create_round(round_name))
+
+    def resume_round(self, round_name):
+        print(self.show_round.init_resume_round(round_name))
 
 
 """

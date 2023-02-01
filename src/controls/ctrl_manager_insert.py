@@ -31,3 +31,14 @@ class CtrlManagerInsert:
         self.manager_to_insert.db_rounds.update({"match": list_matches},
                                                 (self.manager_to_insert.seek.tournament_name == tournament_name) &
                                                 (self.manager_to_insert.seek.name == round_name))
+
+    def insert_end_time_to_rounds_to_database(self, tournament_name, round_name, end_time):
+        self.manager_to_insert.db_rounds.update({"end_time": end_time},
+                                                (self.manager_to_insert.seek.tournament_name == tournament_name) &
+                                                (self.manager_to_insert.seek.name == round_name))
+
+    def insert_result_match_to_match_to_database(self, tournament_name, round_name, match_name, match_result):
+        self.manager_to_insert.db_matches.update({"result_match": match_result},
+                                                 (self.manager_to_insert.seek.tournament_name == tournament_name) &
+                                                 (self.manager_to_insert.seek.round_name == round_name) &
+                                                 (self.manager_to_insert.seek.name == match_name))

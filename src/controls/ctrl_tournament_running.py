@@ -6,7 +6,9 @@ from src.controls.ctrl_tournament_methods import LeaveRound
 class CtrlTournamentRunning:
     def __init__(self, tournament_methods):
         self.tournament_methods = tournament_methods
-        self.round_methods = CtrlRoundMethods(self.tournament_methods.manager_main)
+        self.round_methods = CtrlRoundMethods(self.tournament_methods.manager_main,
+                                              self.tournament_methods.player_methods,
+                                              self.tournament_methods.view_main)
         self.round_running = CtrlRoundRunning(self.round_methods)
         self.tournament_main = None
         self.tournament_main_running = True
@@ -83,8 +85,6 @@ class CtrlTournamentRunning:
                         # Modifie la liste de round de liste de dictionnaire à liste d'instance de classe
                         self.tournament_main.rounds = self.round_methods.replace_rounds_list_dict_to_instance(
                             self.tournament_main.rounds, self.tournament_main.name)
-                        # Remet dans l'ordre les rounds dans la liste tournoi
-                        self.tournament_main.rounds.sort()
 
                         # si le dernier round de la liste round du tournoi a une date de fin
                         if self.tournament_methods.manager_main.check_main.check_models.check_end_time_rounds_exists(
@@ -96,7 +96,7 @@ class CtrlTournamentRunning:
                                     self.tournament_main.rounds[len(self.tournament_main.rounds)-1].name,
                                     self.tournament_main.name, self.tournament_main.date) is not None:
                                 self.tournament_main.date.append(
-                                    self.tournament_methods.update_date_start_round(
+                                    self.tournament_methods.update_date_end_round(
                                         self.tournament_main.rounds[len(self.tournament_main.rounds)-1].name,
                                         self.tournament_main.name, self.tournament_main.date))
                             else:
@@ -134,4 +134,4 @@ class CtrlTournamentRunning:
                             except LeaveRound:
                                 self.tournament_main_running = False
 
-        self.tournament_main_running = self.tournament_methods.tournament_keep_running()
+            self.tournament_main_running = self.tournament_methods.tournament_keep_running()

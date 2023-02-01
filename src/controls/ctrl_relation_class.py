@@ -14,7 +14,7 @@ class CtrlRelationClass:
         self.player_methods = CtrlPlayerMethods(self.view_main, self.manager_main)
         self.tournament_methods = CtrlTournamentMethods(self.view_main, self.manager_main, self.player_methods)
         self.tournament_running = CtrlTournamentRunning(self.tournament_methods)
-        self.main_menu = CtrlMainMenu(self.view_main, self.tournament_methods, self.player_methods)
+        self.main_menu = CtrlMainMenu(self.view_main, self.tournament_running, self.player_methods)
         self.tournament_menu = CtrlTournamentMenu()
 
 

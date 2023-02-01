@@ -62,3 +62,10 @@ class ShowErrorInput:
                "Veuillez réitérer l'opération. Si le problème persiste, veuillez contacter le développeur"
 
     error_record = staticmethod(error_record)
+
+    def error_tournament_name(tournament_name):
+        return f"Le tournoi nommé {tournament_name} n'est pas reconnu. \n" \
+               f"Vous pouvez consulter la base de donnée depuis le menu principal pour " \
+               f"vous assurer de l'existance ou de l'orthographe du nom du tournoi."
+
+    error_tournament_name = staticmethod(error_tournament_name)

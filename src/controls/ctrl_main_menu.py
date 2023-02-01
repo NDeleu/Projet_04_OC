@@ -2,10 +2,10 @@ from src.views import ShowNavigateMainMenu
 
 
 class CtrlMainMenu:
-    def __init__(self, view_main, tournament_methods, player_method):
+    def __init__(self, view_main, tournament_running, player_method):
         self.show_navigate_main_menu = ShowNavigateMainMenu()
         self.view_main = view_main
-        self.tournament_methods = tournament_methods
+        self.tournament_running = tournament_running
         self.player_method = player_method
 
     def menu_navigate(self):
@@ -13,13 +13,13 @@ class CtrlMainMenu:
         answer = self.view_main.view_input.try_choice_input(self.show_navigate_main_menu.list_choice)
         if answer == "1":
             # create tournament
-            self.tournament_methods.register_tournament()
+            self.tournament_running.tournament_methods.register_tournament()
         elif answer == "2":
             # create player
             self.player_method.register_player()
         elif answer == "3":
             # load tournament
-            return self.tournament_methods.load_tournament()
+            return self.tournament_running.tournament_methods.load_tournament()
         elif answer == "4":
             # pandas
             print("\nLa fonction de consultation des résultats, "
@@ -29,7 +29,11 @@ class CtrlMainMenu:
             print("\nLa fonction de consultation du flake8 n'est pas encore implantée")
         elif answer == "6":
             # change result matches
-            print("\nLa fonction de modification des matchs n'est pas encore implantée")
+            tournament_name = self.tournament_running.tournament_methods.load_tournament()
+            if tournament_name is None:
+                print(self.view_main.view_input.show_error_input.error_tournament_name(tournament_name))
+            else:
+                self.tournament_running.round_running.match_methods.change_and_save_result_match(tournament_name)
         elif answer == "7":
             # leave application
             return False

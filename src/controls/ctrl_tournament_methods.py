@@ -205,6 +205,7 @@ class CtrlTournamentMethods:
 class LeaveRound(Exception):
     pass
 
+
 """
 class ControlTournoi:
     def __init__(self, manager, round_control, player_control):

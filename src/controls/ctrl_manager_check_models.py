@@ -48,6 +48,29 @@ class CtrlManagerCheckModels:
                 pass
         return None
 
+    def open_load_matches(self, name, round_name, tournament_name):
+        for matches in self.manager_to_check_models.db_matches.all():
+            if matches["tournament_name"] == tournament_name:
+                if matches["round_name"] == round_name:
+                    if matches["name"] == name:
+                        return matches
+                    else:
+                        pass
+                else:
+                    pass
+            else:
+                pass
+        return None
+
+    def open_load_all_matches_from_tournament(self, tournament_name):
+        list_match = []
+        for matches in self.manager_to_check_models.db_matches.all():
+            if matches["tournament_name"] == tournament_name:
+                list_match.append(matches)
+            else:
+                pass
+        return list_match
+
     def return_date_start_round(self, name, tournament_name):
         for rounds in self.manager_to_check_models.db_rounds.all():
             if rounds["tournament_name"] == tournament_name:
