@@ -62,8 +62,83 @@ class CtrlRoundMethods:
                                                                        list_player[y+(int(len(list_player)/2))])))
         return list_id_and_couple_player
 
-    def init_other_round(self):
-        pass
+    def init_other_round(self, tournament_name, player_list):
+        list_id_and_couple_player = []
+        list_player = copy.deepcopy(self.player_methods.init_player_round_point_encountered(
+            tournament_name, player_list))
+        list_player_by_round_point = sorted(list_player, key=lambda x: x.round_point, reverse=True)
+        list_player_by_round_point_extend = copy.deepcopy(list_player_by_round_point)
+        list_player_by_round_point_extend.append("Out")
+        for y in range(int(len(list_player_by_round_point)/2)):
+            list_id_and_couple_player.append((y+1,
+                                              self.couple_player_match(
+                                                  self.test_player1_in_list_couple(
+                                                      list_player_by_round_point_extend, list_id_and_couple_player),
+                                                  self.test_player2_in_list_couple(
+                                                      list_player_by_round_point_extend, list_id_and_couple_player))))
+        return list_id_and_couple_player
+
+    def test_player1_in_list_couple(self, list_player, list_couple):
+        if list_couple:
+            for player in list_player:
+                if self.test_is_in_couple(list_couple, player):
+                    pass
+                else:
+                    return player
+        else:
+            return list_player[0]
+
+    def test_player2_in_list_couple(self, list_player, list_couple):
+        if list_couple:
+            for player in list_player:
+                if player == "Out":
+                    for players in list_player:
+                        if self.test_is_in_couple(list_couple, players):
+                            pass
+                        elif players == self.test_player1_in_list_couple(list_player, list_couple):
+                            pass
+                        else:
+                            return players
+                else:
+                    if self.test_is_in_couple(list_couple, player):
+                        pass
+                    elif player == self.test_player1_in_list_couple(list_player, list_couple):
+                        pass
+                    elif self.test_is_encountered(
+                            self.test_player1_in_list_couple(list_player, list_couple).encountered, player.id_chess):
+                        pass
+                    else:
+                        return player
+        else:
+            for player in list_player:
+                if player == "Out":
+                    for players in list_player:
+                        if players == list_player[0]:
+                            pass
+                        else:
+                            return players
+                else:
+                    if player == list_player[0]:
+                        pass
+                    elif self.test_is_encountered(
+                            self.test_player1_in_list_couple(list_player, list_couple).encountered, player.id_chess):
+                        pass
+                    else:
+                        return player
+
+    def test_is_in_couple(list_couple, player):
+        for couple in list_couple:
+            if couple[1][0] == player or couple[1][1] == player:
+                return True
+
+    test_is_in_couple = staticmethod(test_is_in_couple)
+
+    def test_is_encountered(list_encountered, id_player_tested):
+        for id_counter in list_encountered:
+            if id_counter == id_player_tested:
+                return True
+
+    test_is_encountered = staticmethod(test_is_encountered)
 
     def couple_player_match(player1, player2):
         return player1, player2

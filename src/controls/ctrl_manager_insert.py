@@ -19,6 +19,10 @@ class CtrlManagerInsert:
         self.manager_to_insert.db_tournaments.update({"player_list": list_players},
                                                      self.manager_to_insert.seek.name == tournament_name)
 
+    def insert_total_points_to_player_to_database(self, player_total_points, player_id):
+        self.manager_to_insert.db_players.update({"total_points": player_total_points},
+                                                 self.manager_to_insert.seek.id_chess == player_id)
+
     def insert_rounds_to_tournament_to_database(self, tournament_name, list_rounds):
         self.manager_to_insert.db_tournaments.update({"rounds": list_rounds},
                                                      self.manager_to_insert.seek.name == tournament_name)

@@ -1,3 +1,5 @@
+import copy
+
 from src.models.mdl_tournament import Tournament
 from src.views.view_show_tournament import ShowTournament
 
@@ -191,6 +193,18 @@ class CtrlTournamentMethods:
         if method_tried is False:
             raise self.leave_round
         return method_tried
+
+    def end_tournament(self, tournament_inst):
+        print(self.show_tournament.show_end_tournament(
+            tournament_inst.name, tournament_inst.date[len(tournament_inst.date)-1]))
+        print(self.show_tournament.show_init_result_end_tournament())
+        list_player = copy.deepcopy(tournament_inst.player_list)
+        list_player_by_round_point = copy.deepcopy(
+            self.player_methods.init_player_round_point_calculated(tournament_inst.name, list_player))
+        list_player_order_round_point = sorted(list_player_by_round_point, key=lambda x: x.round_point, reverse=True)
+        for player in list_player_order_round_point:
+            print(self.show_tournament.show_result_end_tournament(
+                player.name, player.surname, player.id_chess, player.round_point))
 
     def tournament_keep_running(): # à modifier plus tard
         answer = input("1 pour quitter, 2 pour continuer")

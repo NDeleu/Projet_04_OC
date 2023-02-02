@@ -1,3 +1,5 @@
+import copy
+
 from src.models.mdl_player_displayed import PlayerDisplayed
 from src.models.mdl_player_registered import PlayerRegistered
 from src.views.view_show_player import ShowPlayer
@@ -72,45 +74,36 @@ class CtrlPlayerMethods:
             **self.manager_main.manager_format.player_register_to_displayed(
                 self.manager_main.check_main.check_models.open_load_player(id_player)))
 
+    def init_player_round_point_calculated(self, tournament_name, list_player):
+        new_list_player = copy.deepcopy(list_player)
+        for player in new_list_player:
+            player.round_point = self.manager_main.check_main.check_results.check_round_point_player(
+                tournament_name, player.id_chess)
+        return new_list_player
 
-"""
-class ControlPlayer:
-    def __init__(self, manager):
-        self.player = Player
-        self.manager = manager
+    def init_player_encountered_updated(self, tournament_name, list_player):
+        new_list_player = copy.deepcopy(list_player)
+        for player in new_list_player:
+            player.encountered = self.manager_main.check_main.check_results.check_encountered_player(
+                tournament_name, player.id_chess)
+        return new_list_player
 
-    def init_player(self, name, surname, naissance, identifiant):
-        return self.player(name, surname, naissance, identifiant)
+    def init_player_round_point_encountered(self, tournament_name, list_player):
+        new_list_player = copy.deepcopy(list_player)
+        list_with_round_point = self.init_player_round_point_calculated(tournament_name, new_list_player)
+        list_with_round_point_encountered = self.init_player_encountered_updated(tournament_name, list_with_round_point)
+        return list_with_round_point_encountered
 
-    def add_player(self, name, surname, naissance, identifiant):
-        self.manager.list_all_player.append(self.init_player(name, surname, naissance, identifiant))
-        self.manager.creat_player_to_json(len(self.manager.list_all_player))
+    def player_total_point_calculated(self, list_player):
+        list_player_registered = []
+        for player_to_registered in list_player:
+            list_player_registered.append(
+                self.player_registered(**
+                                       self.manager_main.check_main.check_models.open_load_player(
+                                           player_to_registered.id_chess)))
+        for player in list_player_registered:
+            player.total_points = self.manager_main.check_main.check_results.check_total_point_player(player.id_chess)
+            self.manager_main.manager_insert.insert_total_points_to_player_to_database(
+                player.total_points, player.id_chess)
 
-    def load_player_by_idplayer(self, identifiant_player):
-        self.manager.list_all_player.append(
-            self.player(**self.manager.load_player_to_json_by_idplayer(identifiant_player)))
-
-    def load_player_by_idjson(self, player_number):
-        self.manager.list_all_player.append(
-            self.player(**self.manager.load_player_to_json_by_idjson(player_number)))
-
-    def load_all_player(self):
-        for y in range(self.manager.len_list_player()):
-            self.load_player_by_idjson(y+1)
-
-    def calcul_total_point(self, players):
-        for tournoi in self.manager.list_all_tournoi:
-            for rounding in tournoi.round:
-                for matching in rounding.match:
-                    if players == matching.result_match[0][0]:
-                        players.total_point += matching.result_match[0][1]
-                    elif players == matching.result_match[1][0]:
-                        players.total_point += matching.result_match[1][1]
-
-    def init_total_point(self):
-        for players in self.manager.list_all_player:
-            players.total_point = 0
-            self.calcul_total_point(players)
-            self.manager.save_total_point_player_to_json(players)
-"""
 

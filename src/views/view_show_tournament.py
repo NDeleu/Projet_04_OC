@@ -109,3 +109,18 @@ class ShowTournament:
         return "Le joueur a bien été enregistré comme participant à ce tournoi."
 
     show_success_add_player = staticmethod(show_success_add_player)
+
+    def show_end_tournament(tournament_name, date_end):
+        return f"Fin du Tournoi : {tournament_name} le {date_end} \n"
+
+    show_end_tournament = staticmethod(show_end_tournament)
+
+    def show_init_result_end_tournament():
+        return "Classement et résultats des joueurs : \n"
+
+    show_init_result_end_tournament = staticmethod(show_init_result_end_tournament)
+
+    def show_result_end_tournament(player_name, player_surname, player_id, player_round_point):
+        return f"{player_name} {player_surname} {player_id} :   {player_round_point}"
+
+    show_result_end_tournament = staticmethod(show_result_end_tournament)

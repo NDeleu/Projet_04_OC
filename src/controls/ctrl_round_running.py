@@ -47,7 +47,18 @@ class CtrlRoundRunning:
                         self.round_main.tournament_name, self.round_main.name, self.round_main.match)
 
                 else:
-                    print("Début du Round2")
+                    # Création des matchs et ajout de ces matchs dans la liste des matchs du round
+                    for y in self.round_methods.init_other_round(self.round_main.tournament_name, self.player_list):
+                        self.round_main.match.append(
+                            self.match_methods.register_and_load_match_to_round(
+                                f"Match{y[0]}",
+                                self.round_main.name,
+                                self.round_main.tournament_name,
+                                y[1][0],
+                                y[1][1]))
+                    # Sauvegarde de la liste round du tournoi dans la database
+                    self.match_methods.save_list_match_to_database(
+                        self.round_main.tournament_name, self.round_main.name, self.round_main.match)
 
             else:
                 # Modifie la liste des matchs de liste de dictionnaire à liste d'instance de classe
