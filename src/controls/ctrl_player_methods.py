@@ -50,6 +50,19 @@ class CtrlPlayerMethods:
         dict_to_record = self.init_dict_player_register()
         return self.player_registered(**dict_to_record)
 
+    def open_player_displayed(self, dict_to_record):
+        return self.player_displayed(**dict_to_record)
+
+    def list_player_displayed(self, list_dict):
+        list_player_disp = []
+        for player in list_dict:
+            list_player_disp.append(
+                self.open_player_displayed(self.manager_main.manager_format.player_register_to_displayed(player)))
+        return list_player_disp
+
+    def list_all_player_displayed(self):
+        return self.list_player_displayed(self.manager_main.check_main.check_models.open_list_all_player_dict())
+
     def register_player(self):
         player_instance = self.init_create_player_registered()
         self.manager_main.manager_insert.insert_player_to_database(player_instance.__dict__)

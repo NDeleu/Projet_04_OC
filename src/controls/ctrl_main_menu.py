@@ -34,6 +34,7 @@ class CtrlMainMenu:
                 print(self.view_main.view_input.show_error_input.error_tournament_name(tournament_name))
             else:
                 self.tournament_running.round_running.match_methods.change_and_save_result_match(tournament_name)
+                self.player_method.player_total_point_calculated(self.player_method.list_all_player_displayed())
         elif answer == "7":
             # leave application
             return False

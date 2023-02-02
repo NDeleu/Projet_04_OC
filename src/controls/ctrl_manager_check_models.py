@@ -106,3 +106,9 @@ class CtrlManagerCheckModels:
             else:
                 pass
         return False
+
+    def open_list_all_player_dict(self):
+        list_dict = []
+        for player in self.manager_to_check_models.db_players.all():
+            list_dict.append(player)
+        return list_dict
