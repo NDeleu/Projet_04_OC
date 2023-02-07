@@ -2,7 +2,7 @@ DESCRIPTION: Gestionnaire de Tournoi :
 
 Création de l'environnement virtuel :
 
-Dans votre terminal, accédez au dossier projet_2_OC : Saisissez dans votre terminal : ``cd nom_du_chemin_d_acces``
+Dans votre terminal, accédez au dossier projet_2_OC : Saisissez dans votre terminal : ``cd nom_du_chemin_d_acces``\
 Si vous recherchez le path de ce chemin, allez dans le dossier projet_04_OC, et dans la barre de recherche du dossier, 
 située en haut du dossier, faites un clic gauche pour sélectionner le chemin, puis un clic droit pour copier coller ce chemin
 Dans votre terminal, créez un environnement virtuel pour Python, par convention nous appelerons cet environnement : env
