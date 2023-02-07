@@ -176,7 +176,7 @@ class CtrlRoundMethods:
 
     check_all_match_played = staticmethod(check_all_match_played)
 
-    def round_keep_running(): # à modifier plus tard
+    def round_keep_running():  # à modifier plus tard
         answer = input("1 pour quitter, 2 pour continuer")
         if answer == "1":
             return False

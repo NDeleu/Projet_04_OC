@@ -2,11 +2,12 @@ from src.views import ShowNavigateMainMenu
 
 
 class CtrlMainMenu:
-    def __init__(self, view_main, tournament_running, player_method):
+    def __init__(self, view_main, tournament_running, player_method, flake_8):
         self.show_navigate_main_menu = ShowNavigateMainMenu()
         self.view_main = view_main
         self.tournament_running = tournament_running
         self.player_method = player_method
+        self.flake_8 = flake_8
 
     def menu_navigate(self):
         self.show_navigate_main_menu.show_menu_navigate()
@@ -28,8 +29,7 @@ class CtrlMainMenu:
                   "n'est pas encore implantée.")
         elif answer == "5":
             # flake8
-            print("\nLa fonction de consultation du flake8 "
-                  "n'est pas encore implantée")
+            return self.flake_8.choice_show_flake()
         elif answer == "6":
             # change result matches
             tournament_name = self.tournament_running.\

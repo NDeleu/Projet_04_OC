@@ -252,7 +252,7 @@ class CtrlTournamentMethods:
                 player.id_chess,
                 player.round_point))
 
-    def tournament_keep_running(): # à modifier plus tard
+    def tournament_keep_running():  # à modifier plus tard
         answer = input("1 pour quitter, 2 pour continuer")
         if answer == "1":
             return False
