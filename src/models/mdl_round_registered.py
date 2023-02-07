@@ -2,7 +2,9 @@ from src.models.mdl_round import Round
 
 
 class RoundRegistered(Round):
-    def __init__(self, start_time, name, tournament_name, end_time=None, match=None):
+    def __init__(
+            self, start_time, name,
+            tournament_name, end_time=None, match=None):
         super().__init__(name, tournament_name, match)
         self.start_time = start_time
         if end_time is None:

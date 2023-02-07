@@ -4,21 +4,24 @@ class CtrlManagerFormat:
         self.manager_to_format = manager
 
     def player_register_to_displayed(dict_receive):
-        dict_return = {"name": dict_receive["name"], "surname": dict_receive["surname"],
+        dict_return = {"name": dict_receive["name"],
+                       "surname": dict_receive["surname"],
                        "id_chess": dict_receive["id_chess"]}
         return dict_return
 
     player_register_to_displayed = staticmethod(player_register_to_displayed)
 
     def round_register_to_displayed(dict_receive):
-        dict_return = {"name": dict_receive["name"], "tournament_name": dict_receive["tournament_name"]}
+        dict_return = {"name": dict_receive["name"],
+                       "tournament_name": dict_receive["tournament_name"]}
         return dict_return
 
     round_register_to_displayed = staticmethod(round_register_to_displayed)
 
     def match_register_to_displayed(dict_receive):
         dict_return = {"name": dict_receive["name"],
-                       "round_name": dict_receive["round_name"], "tournament_name": dict_receive["tournament_name"]}
+                       "round_name": dict_receive["round_name"],
+                       "tournament_name": dict_receive["tournament_name"]}
         return dict_return
 
     match_register_to_displayed = staticmethod(match_register_to_displayed)
@@ -29,7 +32,8 @@ class CtrlManagerFormat:
             list_return.append(player.__dict__)
         return list_return
 
-    format_update_players_to_tournament_to_database = staticmethod(format_update_players_to_tournament_to_database)
+    format_update_players_to_tournament_to_database = staticmethod(
+        format_update_players_to_tournament_to_database)
 
     def format_update_rounds_to_tournament_to_database(list_rounds):
         list_return = []
@@ -37,4 +41,5 @@ class CtrlManagerFormat:
             list_return.append(rounds.__dict__)
         return list_return
 
-    format_update_rounds_to_tournament_to_database = staticmethod(format_update_rounds_to_tournament_to_database)
+    format_update_rounds_to_tournament_to_database = staticmethod(
+        format_update_rounds_to_tournament_to_database)

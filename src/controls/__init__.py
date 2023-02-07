@@ -9,10 +9,12 @@ from src.controls.ctrl_manager_check_models import CtrlManagerCheckModels
 from src.controls.ctrl_manager_check_results import CtrlManagerCheckResults
 from src.controls.ctrl_manager_insert import CtrlManagerInsert
 from src.controls.ctrl_manager_format import CtrlManagerFormat
-from src.controls.ctrl_relation_class import CtrlRelationClass, LeaveApplication, LeaveTournament
+from src.controls.ctrl_relation_class import CtrlRelationClass, \
+    LeaveApplication, LeaveTournament
 from src.controls.ctrl_round_running import CtrlRoundRunning
 from src.controls.ctrl_tournament_menu import CtrlTournamentMenu
-from src.controls.ctrl_tournament_methods import CtrlTournamentMethods, LeaveRound
+from src.controls.ctrl_tournament_methods import CtrlTournamentMethods, \
+    LeaveRound
 from src.controls.ctrl_tournament_running import CtrlTournamentRunning
 from src.controls.ctrl_view_input import CtrlViewInput
 from src.controls.ctrl_view_main import CtrlViewMain

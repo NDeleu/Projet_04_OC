@@ -2,7 +2,9 @@ from src.models.mdl_match import Match
 
 
 class MatchRegistered(Match):
-    def __init__(self, player1, player2, result_match, name, round_name, tournament_name):
+    def __init__(
+            self, player1, player2, result_match,
+            name, round_name, tournament_name):
         super().__init__(name, round_name, tournament_name)
         self.player1 = player1
         self.player2 = player2

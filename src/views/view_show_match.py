@@ -4,7 +4,8 @@ class ShowMatch:
         pass
 
     def show_init_enter_result_match():
-        return "Veuillez saisir le choix correspondant au résultat du match : \n"
+        return "Veuillez saisir le choix correspondant " \
+               "au résultat du match : \n"
 
     show_init_enter_result_match = staticmethod(show_init_enter_result_match)
 
@@ -16,7 +17,8 @@ class ShowMatch:
     show_enter_result_match = staticmethod(show_enter_result_match)
 
     def show_init_choice_match():
-        return "Veuillez saisir le choix correspondant au match pour lequel vous souhaitez saisir un résultat : \n"
+        return "Veuillez saisir le choix correspondant au match pour " \
+               "lequel vous souhaitez saisir un résultat : \n"
 
     show_init_choice_match = staticmethod(show_init_choice_match)
 

@@ -1,4 +1,5 @@
-from src.views.view_show_navigate_tournament_menu import ShowNavigateTournamentMenu
+from src.views.view_show_navigate_tournament_menu \
+    import ShowNavigateTournamentMenu
 
 
 class CtrlTournamentMenu:

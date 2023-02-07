@@ -1,8 +1,10 @@
 
 
 class Tournament:
-    def __init__(self, name, location, time_control, number_round=4, player_list=None,
-                 rounds=None, date=None, description=None):
+    def __init__(
+            self, name, location, time_control,
+            number_round=4, player_list=None,
+            rounds=None, date=None, description=None):
         self.name = name
         self.location = location
         if date is None:

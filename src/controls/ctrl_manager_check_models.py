@@ -1,5 +1,3 @@
-import copy
-
 
 class CtrlManagerCheckModels:
     def __init__(self, manager):
@@ -97,7 +95,8 @@ class CtrlManagerCheckModels:
         for rounds in self.manager_to_check_models.db_rounds.all():
             if rounds["tournament_name"] == tournament_name:
                 if rounds["name"] == name:
-                    if rounds["end_time"] != "Le Round n'est pas encore terminé":
+                    if rounds["end_time"] != "Le Round n'est " \
+                                             "pas encore terminé":
                         return True
                     else:
                         pass

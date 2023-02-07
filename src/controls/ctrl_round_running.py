@@ -6,9 +6,10 @@ from src.controls.ctrl_match_methods import CtrlMatchMethods
 class CtrlRoundRunning:
     def __init__(self, round_methods):
         self.round_methods = round_methods
-        self.match_methods = CtrlMatchMethods(self.round_methods.manager_main,
-                                              self.round_methods.player_methods,
-                                              self.round_methods.view_main)
+        self.match_methods = CtrlMatchMethods(
+            self.round_methods.manager_main,
+            self.round_methods.player_methods,
+            self.round_methods.view_main)
         self.round_main = None
         self.round_main_running = True
         self.player_list = None
@@ -19,62 +20,70 @@ class CtrlRoundRunning:
             return False
         else:
 
-            self.round_main = self.round_methods.round_registered(**
-                                                                  self.round_methods.manager_main.check_main.
-                                                                  check_models.open_load_rounds(
-                                                                      round_name, tournament_name))
+            self.round_main = self.round_methods.round_registered(
+                **self.round_methods.manager_main.check_main.
+                check_models.open_load_rounds(round_name, tournament_name))
 
             self.player_list = copy.deepcopy(list_player)
 
-            # Si pas de matchs dans la liste
             if not self.round_main.match:
 
                 self.round_methods.show_create_round(self.round_main.name)
 
-                # Si c'est le premier round
                 if self.round_main.name == "Round1":
-                    # Création des matchs et ajout de ces matchs dans la liste des matchs du round
-                    for y in self.round_methods.init_first_round(self.player_list):
+
+                    for y in self.round_methods.init_first_round(
+                            self.player_list):
                         self.round_main.match.append(
-                            self.match_methods.register_and_load_match_to_round(
+                            self.match_methods.
+                            register_and_load_match_to_round(
                                 f"Match{y[0]}",
                                 self.round_main.name,
                                 self.round_main.tournament_name,
                                 y[1][0],
                                 y[1][1]))
-                    # Sauvegarde de la liste round du tournoi dans la database
+
                     self.match_methods.save_list_match_to_database(
-                        self.round_main.tournament_name, self.round_main.name, self.round_main.match)
+                        self.round_main.tournament_name,
+                        self.round_main.name,
+                        self.round_main.match)
 
                 else:
-                    # Création des matchs et ajout de ces matchs dans la liste des matchs du round
-                    for y in self.round_methods.init_other_round(self.round_main.tournament_name, self.player_list):
+
+                    for y in self.round_methods.init_other_round(
+                            self.round_main.tournament_name, self.player_list):
                         self.round_main.match.append(
-                            self.match_methods.register_and_load_match_to_round(
+                            self.match_methods.
+                            register_and_load_match_to_round(
                                 f"Match{y[0]}",
                                 self.round_main.name,
                                 self.round_main.tournament_name,
                                 y[1][0],
                                 y[1][1]))
-                    # Sauvegarde de la liste round du tournoi dans la database
+
                     self.match_methods.save_list_match_to_database(
-                        self.round_main.tournament_name, self.round_main.name, self.round_main.match)
+                        self.round_main.tournament_name,
+                        self.round_main.name,
+                        self.round_main.match)
 
             else:
-                # Modifie la liste des matchs de liste de dictionnaire à liste d'instance de classe
-                self.round_main.match = self.match_methods.replace_match_list_dict_to_instance(
-                    self.round_main.match)
+
+                self.round_main.match = self.match_methods.\
+                    replace_match_list_dict_to_instance(
+                        self.round_main.match)
 
                 self.round_methods.resume_round(self.round_main.name)
 
-                # Si tous les matchs ont étés joués
-                if self.round_methods.check_all_match_played(self.round_main.match) is True:
+                if self.round_methods.check_all_match_played(
+                        self.round_main.match) is True:
                     pass
                     self.round_methods.show_end_round(self.round_main.name)
                     self.match_methods.show_result_match(self.round_main.match)
-                    self.round_methods.add_end_time_round(self.round_main.tournament_name, self.round_main.name)
+                    self.round_methods.add_end_time_round(
+                        self.round_main.tournament_name, self.round_main.name)
 
                 else:
-                    self.match_methods.register_result_match(self.round_main.match)
+                    self.match_methods.register_result_match(
+                        self.round_main.match)
 
             self.round_main_running = self.round_methods.round_keep_running()

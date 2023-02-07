@@ -22,7 +22,8 @@ class ExceptionInput:
 
     except_is_not_digit = staticmethod(except_is_not_digit)
 
-    def except_alphanum_min_max_characters(self, answer, len_min=1, len_max=999):
+    def except_alphanum_min_max_characters(
+            self, answer, len_min=1, len_max=999):
         if not answer.isalnum():
             raise ValueError
         elif len(answer) < len_min:
@@ -61,25 +62,20 @@ class ExceptionInput:
 
 
 class UnrecognizedInput(Exception):
-    # pas dans la liste des entrées possibles
     pass
 
 
 class NotEnoughCharacters(Exception):
-    # pas assez de caractères
     pass
 
 
 class TooManyCharacters(Exception):
-    # trop de caractères
     pass
 
 
 class AlreadyExists(Exception):
-    # l 'element existe deja
     pass
 
 
 class NotExists(Exception):
-    # l 'element n 'existe pas
     pass

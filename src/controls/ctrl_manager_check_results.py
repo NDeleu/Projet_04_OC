@@ -8,9 +8,11 @@ class CtrlManagerCheckResults:
         for matches in self.manager_to_check_results.db_matches.all():
             if matches["tournament_name"] == tournament_name:
                 if matches["result_match"][0][0]["id_chess"] == player_id:
-                    round_point_calculated += float(matches["result_match"][0][1])
+                    round_point_calculated += float(
+                        matches["result_match"][0][1])
                 elif matches["result_match"][1][0]["id_chess"] == player_id:
-                    round_point_calculated += float(matches["result_match"][1][1])
+                    round_point_calculated += float(
+                        matches["result_match"][1][1])
                 else:
                     pass
             else:
@@ -22,9 +24,11 @@ class CtrlManagerCheckResults:
         for matches in self.manager_to_check_results.db_matches.all():
             if matches["tournament_name"] == tournament_name:
                 if matches["result_match"][0][0]["id_chess"] == player_id:
-                    list_encountered.append(matches["result_match"][1][0]["id_chess"])
+                    list_encountered.append(
+                        matches["result_match"][1][0]["id_chess"])
                 elif matches["result_match"][1][0]["id_chess"] == player_id:
-                    list_encountered.append(matches["result_match"][0][0]["id_chess"])
+                    list_encountered.append(
+                        matches["result_match"][0][0]["id_chess"])
                 else:
                     pass
             else:
