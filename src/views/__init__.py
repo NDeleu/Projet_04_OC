@@ -10,3 +10,4 @@ from src.views.view_show_results import ShowResults
 from src.views.view_show_player import ShowPlayer
 from src.views.view_show_error_input import ShowErrorInput
 from src.views.view_show_flake8 import ShowPepHeight
+from src.views.view_show_data_results import ShowDataResults

@@ -2,12 +2,14 @@ from src.views import ShowNavigateMainMenu
 
 
 class CtrlMainMenu:
-    def __init__(self, view_main, tournament_running, player_method, flake_8):
+    def __init__(self, view_main, tournament_running,
+                 player_method, flake_8, data_results):
         self.show_navigate_main_menu = ShowNavigateMainMenu()
         self.view_main = view_main
         self.tournament_running = tournament_running
         self.player_method = player_method
         self.flake_8 = flake_8
+        self.data_results = data_results
 
     def menu_navigate(self):
         self.show_navigate_main_menu.show_menu_navigate()
@@ -24,9 +26,7 @@ class CtrlMainMenu:
             return self.tournament_running.tournament_methods.load_tournament()
         elif answer == "4":
             # pandas
-            print("\nLa fonction de consultation des résultats, "
-                  "tournois, rounds, matchs et joueurs "
-                  "n'est pas encore implantée.")
+            return self.data_results.choice_show_data_results()
         elif answer == "5":
             # flake8
             return self.flake_8.choice_show_flake()

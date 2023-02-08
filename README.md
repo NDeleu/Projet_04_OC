@@ -24,8 +24,8 @@ merci de vous référez directement au site officiel de Python : https://www.pyt
 
 Si vous désirez consulter le respect de la charte PEP 8 du code du logiciel de management de tournoi,\
 vous pouvez choisir à partir du logiciel de consulter sa vérification par flake 8 soit :\
-Directement sur la console en choisissant l'option 5 dans le menu principal et l'option 1 dans le choix d'affichage\
-En exportant le résultat du flake 8 sur portage html en choisissant l'option 5 dans le menu principal et l'option 2 dans le choix d'affichage.\
+    Directement sur la console en choisissant l'option 5 dans le menu principal et l'option 1 dans le choix d'affichage\
+    En exportant le résultat du flake 8 sur portage html en choisissant l'option 5 dans le menu principal et l'option 2 dans le choix d'affichage.\
 Si vous choisissez la seconde option, le portage html, suite à cette opération, merci d'ouvrir votre explorateur de fichier,\
 et accéder au dossier Projet_04_OC en l'ouvrant.\ 
 Une fois dans ce dossier, vous pouvez ouvrir le dossier flake_report.\
@@ -33,6 +33,23 @@ Une fois dans le dossier flake_report, ouvrez le fichier index.html dans un navi
 Pour cela, vous pouvez faire un clic droit sur le fichier index.html, et dans l'onglet déroulant, choisir ouvrir avec, et selectionner votre navigateur.\
 Exemple de navigateur : Microsoft Edge, Google Chrome ou encore Mozilla Firefox.\
 Cela vous permettra de consulter le rapport flake 8 et de consulter les erreurs, si existantes, en navigant dans les onglets proposés.\
+Un fichier flake_report existe déjà au préalable si vous souhaitez déjà le consulter.\
+Attention : Créer un nouveau fichier flake_report dans le répertoire Porjet_04_OC supprimera l'ancien,\
+merci de déplacer l'ancien dossier flake_report dans un nouveau répertoire si vous souhaitez le conserver.\
+
+Si vous désirez consulter les données générées par le logiciel de management de tournoi,\
+vous pouvez choisir à partir du logiciel de les consulter par dataframe par le biai de pandas soit :\
+    Directement sur la console en choisissant l'option 4 dans le menu principal et l'option 1 dans le choix d'affichage\
+    En exportant le dataframe sur portage html en choisissant l'option 4 dans le menu principal et l'option 2 dans le choix d'affichage.\
+Si vous choisissez la seconde option, le portage html, suite à cette opération, merci d'ouvrir votre explorateur de fichier,\
+et accéder au dossier Projet_04_OC en l'ouvrant.\ 
+Une fois dans ce dossier, vous pouvez ouvrir le dossier data_results.\
+Une fois dans le dossier data_results, ouvrez le fichier désiré en format html (nom_du_fichier.html) dans un navigateur.\
+Pour cela, vous pouvez faire un clic droit sur le fichier concerné, et dans l'onglet déroulant, choisir ouvrir avec, et selectionner votre navigateur.\
+Exemple de navigateur : Microsoft Edge, Google Chrome ou encore Mozilla Firefox.\
+Cela vous permettra de consulter le dataframe et de consulter les données relatives avec une plus grand clarté.\
+Attention : Créer un nouveau fichier d'un dataframe déjà existant dans le répertoire Porjet_04_OC supprimera l'ancien,\
+merci de déplacer l'ancien fichier du dataframe dans un nouveau répertoire si vous souhaitez le conserver.\
 
 LICENSE: Application open source\
 

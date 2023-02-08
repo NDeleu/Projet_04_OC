@@ -19,4 +19,5 @@ from src.controls.ctrl_tournament_running import CtrlTournamentRunning
 from src.controls.ctrl_view_input import CtrlViewInput
 from src.controls.ctrl_view_main import CtrlViewMain
 from src.controls.ctrl_view_results import CtrlViewResults
-from src.controls.ctrl_flake8 import ControlPepHeight
+from src.controls.ctrl_flake8 import CtrlPepHeight
+from src.controls.ctrl_data_results import CtrlDataResults

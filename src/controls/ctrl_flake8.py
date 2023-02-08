@@ -3,7 +3,7 @@ import subprocess
 import os
 
 
-class ControlPepHeight:
+class CtrlPepHeight:
     def __init__(self, view_main):
         self.subprocess = subprocess
         self.show_flake8 = ShowPepHeight
