@@ -1,27 +1,27 @@
-import copy
+
 import random
 
-from src.models.mdl_round_displayed import RoundDisplayed
-from src.models.mdl_round_registered import RoundRegistered
-from src.views.view_show_round import ShowRound
-import datetime
+from src.models import RoundRegistered
+from src.models import RoundDisplayed
+from src.views import ShowRound
 
 
 class CtrlRoundMethods:
-    def __init__(self, manager_main, player_methods, view_main):
+    def __init__(self, manager_main, player_methods, view_main, copy):
+        self.copy = copy
         self.round_registered = RoundRegistered
         self.round_displayed = RoundDisplayed
         self.show_round = ShowRound()
         self.manager_main = manager_main
         self.player_methods = player_methods
         self.view_main = view_main
+        self.datetime = view_main.view_input.datetime
 
-    def init_dict_round_register(name, tournament_name):
+    def init_dict_round_register(self, name, tournament_name):
         return {"name": name,
                 "tournament_name": tournament_name,
-                "start_time": datetime.datetime.now().strftime("%Y-%m-%d")}
-
-    init_dict_round_register = staticmethod(init_dict_round_register)
+                "start_time": self.datetime.datetime.now().
+                strftime("%Y-%m-%d")}
 
     def init_create_round_registered(self, name, tournament_name):
         dict_to_record = self.init_dict_round_register(name, tournament_name)
@@ -62,7 +62,7 @@ class CtrlRoundMethods:
 
     def init_first_round(self, player_list):
         list_id_and_couple_player = []
-        list_player = copy.deepcopy(player_list)
+        list_player = self.copy.deepcopy(player_list)
         random.shuffle(list_player)
         for y in range(int(len(list_player) / 2)):
             list_id_and_couple_player.append(
@@ -73,12 +73,12 @@ class CtrlRoundMethods:
 
     def init_other_round(self, tournament_name, player_list):
         list_id_and_couple_player = []
-        list_player = copy.deepcopy(
+        list_player = self.copy.deepcopy(
             self.player_methods.init_player_round_point_encountered(
                 tournament_name, player_list))
         list_player_by_round_point = sorted(
             list_player, key=lambda x: x.round_point, reverse=True)
-        list_player_by_round_point_extend = copy.deepcopy(
+        list_player_by_round_point_extend = self.copy.deepcopy(
             list_player_by_round_point)
         list_player_by_round_point_extend.append("Out")
         for y in range(int(len(list_player_by_round_point) / 2)):
@@ -184,7 +184,7 @@ class CtrlRoundMethods:
         self.manager_main.manager_insert.insert_end_time_to_rounds_to_database(
             tournament_name,
             round_name,
-            datetime.datetime.now().strftime("%Y-%m-%d"))
+            self.datetime.datetime.now().strftime("%Y-%m-%d"))
 
     def show_create_round(self, round_name):
         print(self.show_round.init_show_create_round(round_name))

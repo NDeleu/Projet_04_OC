@@ -1,6 +1,6 @@
-from src.models.mdl_match_registered import MatchRegistered
-from src.models.mdl_match_displayed import MatchDisplayed
-from src.views.view_show_match import ShowMatch
+from src.models import MatchRegistered
+from src.models import MatchDisplayed
+from src.views import ShowMatch
 
 
 class CtrlMatchMethods:
@@ -142,8 +142,8 @@ class CtrlMatchMethods:
                 list_match.index(proposed_match) + 1))
             list_choice.append(list_match.index(proposed_match) + 1)
         print(self.show_match.show_choice_match_to_change_leave(
-            len(list_choice)+1))
-        list_choice.append(len(list_choice)+1)
+            len(list_choice) + 1))
+        list_choice.append(len(list_choice) + 1)
         answer = self.view_main.view_input.try_choice_input(list_choice)
         if int(answer) == len(list_choice):
             return False

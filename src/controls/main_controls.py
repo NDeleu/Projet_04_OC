@@ -1,4 +1,5 @@
-from src.controls.ctrl_relation_class import CtrlRelationClass, \
+
+from src.controls import CtrlRelationClass, \
     LeaveApplication, LeaveTournament
 
 

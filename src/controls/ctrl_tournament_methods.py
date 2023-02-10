@@ -1,11 +1,11 @@
-import copy
 
-from src.models.mdl_tournament import Tournament
-from src.views.view_show_tournament import ShowTournament
+from src.models import Tournament
+from src.views import ShowTournament
 
 
 class CtrlTournamentMethods:
-    def __init__(self, view_main, manager_main, player_methods):
+    def __init__(self, view_main, manager_main, player_methods, copy):
+        self.copy = copy
         self.tournament = Tournament
         self.show_tournament = ShowTournament()
         self.view_main = view_main
@@ -247,8 +247,8 @@ class CtrlTournamentMethods:
             tournament_inst.name,
             tournament_inst.date[len(tournament_inst.date) - 1]))
         print(self.show_tournament.show_init_result_end_tournament())
-        list_player = copy.deepcopy(tournament_inst.player_list)
-        list_player_by_round_point = copy.deepcopy(
+        list_player = self.copy.deepcopy(tournament_inst.player_list)
+        list_player_by_round_point = self.copy.deepcopy(
             self.player_methods.init_player_round_point_calculated(
                 tournament_inst.name, list_player))
         list_player_order_round_point = sorted(

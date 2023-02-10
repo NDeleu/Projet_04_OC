@@ -1,12 +1,11 @@
-from src.views.view_show_data_results import ShowDataResults
+from src.views import ShowDataResults
 import pandas
-import os
 
 
 class CtrlDataResults:
     def __init__(
             self, view_main, manager_main,
-            player_methods, tournament_methods):
+            player_methods, tournament_methods, os):
         self.df = pandas.DataFrame
         self.os = os
         self.show_data_results = ShowDataResults
@@ -127,15 +126,15 @@ class CtrlDataResults:
                         tournament_name))
             if not dict_tournament_player_list:
                 return f"tournament_players_list_{tournament_name}.html", \
-                       self.show_data_results.show_tournament_players_list(
-                           tournament_name), \
-                       self.show_data_results.\
-                           show_empty_tournament_players_list(tournament_name)
+                    self.show_data_results.show_tournament_players_list(
+                        tournament_name), \
+                    self.show_data_results.\
+                    show_empty_tournament_players_list(tournament_name)
             else:
                 return f"tournament_players_list_{tournament_name}.html", \
-                       self.show_data_results.show_tournament_players_list(
-                           tournament_name), \
-                       self.df.transpose(self.df(dict_tournament_player_list))
+                    self.show_data_results.show_tournament_players_list(
+                        tournament_name), \
+                    self.df.transpose(self.df(dict_tournament_player_list))
 
     def tournament_rounds_list(self):
         tournament_name = self.tournament_methods.load_tournament()
@@ -147,10 +146,10 @@ class CtrlDataResults:
                     tournament_name)
             if not dict_tournament_rounds_list:
                 return f"tournament_rounds_list_{tournament_name}.html", \
-                       self.show_data_results.show_tournament_rounds_list(
-                           tournament_name), \
-                       self.show_data_results.\
-                           show_empty_tournament_rounds_list(tournament_name)
+                    self.show_data_results.show_tournament_rounds_list(
+                        tournament_name), \
+                    self.show_data_results.\
+                    show_empty_tournament_rounds_list(tournament_name)
             else:
                 return f"tournament_rounds_list_{tournament_name}.html", \
                        self.show_data_results.show_tournament_rounds_list(

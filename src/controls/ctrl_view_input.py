@@ -1,19 +1,22 @@
-from src.views.view_exception_input import ExceptionInput, UnrecognizedInput, \
+
+from src.views import ExceptionInput, UnrecognizedInput, \
     NotEnoughCharacters, NotExists, \
     TooManyCharacters, AlreadyExists
-from src.views.view_show_error_input import ShowErrorInput
+from src.views import ShowErrorInput
 import datetime
 
 
 class CtrlViewInput:
     def __init__(self):
+        self.datetime = datetime
         self.exception_input = ExceptionInput()
         self.show_error_input = ShowErrorInput()
 
     def try_date_input(self):
         date_tried = input("Saisissez la date de naissance du joueur : ")
         try:
-            return datetime.datetime.strptime(date_tried, "%Y-%m-%d").date()
+            return self.datetime.datetime.strptime(
+                date_tried, "%Y-%m-%d").date()
         except ValueError:
             print(self.show_error_input.error_date_input())
             return self.try_date_input()

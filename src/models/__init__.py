@@ -1,11 +1,11 @@
-from src.models.mdl_player import Player
-from src.models.mdl_player_displayed import PlayerDisplayed
-from src.models.mdl_player_registered import PlayerRegistered
-from src.models.mdl_match import Match
-from src.models.mdl_match_displayed import MatchDisplayed
-from src.models.mdl_match_registered import MatchRegistered
-from src.models.mdl_manager import Manager
-from src.models.mdl_round import Round
-from src.models.mdl_round_displayed import RoundDisplayed
-from src.models.mdl_round_registered import RoundRegistered
-from src.models.mdl_tournament import Tournament
+from src.models.mdl_player import Player  # noqa: F401
+from src.models.mdl_player_displayed import PlayerDisplayed  # noqa: F401
+from src.models.mdl_player_registered import PlayerRegistered  # noqa: F401
+from src.models.mdl_match import Match  # noqa: F401
+from src.models.mdl_match_displayed import MatchDisplayed  # noqa: F401
+from src.models.mdl_match_registered import MatchRegistered  # noqa: F401
+from src.models.mdl_manager import Manager  # noqa: F401
+from src.models.mdl_round import Round  # noqa: F401
+from src.models.mdl_round_displayed import RoundDisplayed  # noqa: F401
+from src.models.mdl_round_registered import RoundRegistered  # noqa: F401
+from src.models.mdl_tournament import Tournament  # noqa: F401

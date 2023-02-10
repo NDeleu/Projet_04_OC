@@ -1,4 +1,5 @@
-from src.models.mdl_player import Player
+
+from src.models import Player
 
 
 class PlayerDisplayed(Player):

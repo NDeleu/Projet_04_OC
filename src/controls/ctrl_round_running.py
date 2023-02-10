@@ -1,10 +1,10 @@
-import copy
 
-from src.controls.ctrl_match_methods import CtrlMatchMethods
+from src.controls import CtrlMatchMethods
 
 
 class CtrlRoundRunning:
-    def __init__(self, round_methods):
+    def __init__(self, round_methods, copy):
+        self.copy = copy
         self.round_methods = round_methods
         self.match_methods = CtrlMatchMethods(
             self.round_methods.manager_main,
@@ -24,7 +24,7 @@ class CtrlRoundRunning:
                 **self.round_methods.manager_main.check_main.
                 check_models.open_load_rounds(round_name, tournament_name))
 
-            self.player_list = copy.deepcopy(list_player)
+            self.player_list = self.copy.deepcopy(list_player)
 
             if not self.round_main.match:
 
@@ -88,4 +88,3 @@ class CtrlRoundRunning:
                             self.round_main.match) is False:
 
                         self.round_main_running = False
-

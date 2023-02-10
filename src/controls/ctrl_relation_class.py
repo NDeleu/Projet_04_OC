@@ -1,28 +1,41 @@
-from src.controls.ctrl_player_methods import CtrlPlayerMethods
-from src.controls.ctrl_tournament_methods import CtrlTournamentMethods
-from src.controls.ctrl_tournament_running import CtrlTournamentRunning
-from src.controls.ctrl_manager_main import CtrlManagerMain
-from src.controls.ctrl_view_main import CtrlViewMain
-from src.controls.ctrl_main_menu import CtrlMainMenu
-from src.controls.ctrl_tournament_menu import CtrlTournamentMenu
-from src.controls.ctrl_flake8 import CtrlPepHeight
-from src.controls.ctrl_data_results import CtrlDataResults
+# from src.controls.ctrl_player_methods import CtrlPlayerMethods
+# from src.controls.ctrl_tournament_methods import CtrlTournamentMethods
+# from src.controls.ctrl_tournament_running import CtrlTournamentRunning
+# from src.controls.ctrl_manager_main import CtrlManagerMain
+# from src.controls.ctrl_view_main import CtrlViewMain
+# from src.controls.ctrl_main_menu import CtrlMainMenu
+# from src.controls.ctrl_tournament_menu import CtrlTournamentMenu
+# from src.controls.ctrl_flake8 import CtrlPepHeight
+# from src.controls.ctrl_data_results import CtrlDataResults
+from src.controls import CtrlPlayerMethods
+from src.controls import CtrlTournamentMethods
+from src.controls import CtrlTournamentRunning
+from src.controls import CtrlManagerMain
+from src.controls import CtrlViewMain
+from src.controls import CtrlMainMenu
+from src.controls import CtrlTournamentMenu
+from src.controls import CtrlPepHeight
+from src.controls import CtrlDataResults
+import copy
+import os
 
 
 class CtrlRelationClass:
     def __init__(self):
+        self.copy = copy
+        self.os = os
         self.view_main = CtrlViewMain()
         self.manager_main = CtrlManagerMain()
-        self.flake_8 = CtrlPepHeight(self.view_main)
+        self.flake_8 = CtrlPepHeight(self.view_main, self.os)
         self.player_methods = CtrlPlayerMethods(
-            self.view_main, self.manager_main)
+            self.view_main, self.manager_main, self.copy)
         self.tournament_methods = CtrlTournamentMethods(
-            self.view_main, self.manager_main, self.player_methods)
+            self.view_main, self.manager_main, self.player_methods, self.copy)
         self.tournament_running = CtrlTournamentRunning(
             self.tournament_methods)
         self.data_results = CtrlDataResults(
             self.view_main, self.manager_main,
-            self.player_methods, self.tournament_methods)
+            self.player_methods, self.tournament_methods, self.os)
         self.main_menu = CtrlMainMenu(
             self.view_main, self.tournament_running,
             self.player_methods, self.flake_8, self.data_results)
@@ -31,16 +44,18 @@ class CtrlRelationClass:
 
 class LeaveApplication(Exception):
     def __init__(self):
+        self.copy = copy
+        self.os = os
         self.view_main = CtrlViewMain()
         self.manager_main = CtrlManagerMain()
-        self.flake_8 = CtrlPepHeight(self.view_main)
+        self.flake_8 = CtrlPepHeight(self.view_main, self.os)
         self.player_methods = CtrlPlayerMethods(
-            self.view_main, self.manager_main)
+            self.view_main, self.manager_main, self.copy)
         self.tournament_methods = CtrlTournamentMethods(
-            self.view_main, self.manager_main, self.player_methods)
+            self.view_main, self.manager_main, self.player_methods, self.copy)
         self.data_results = CtrlDataResults(
             self.view_main, self.manager_main,
-            self.player_methods, self.tournament_methods)
+            self.player_methods, self.tournament_methods, self.os)
         self.main_menu = CtrlMainMenu(
             self.view_main, self.tournament_methods,
             self.player_methods, self.flake_8, self.data_results)

@@ -1,10 +1,9 @@
-from src.views.view_show_flake8 import ShowPepHeight
+from src.views import ShowPepHeight
 import subprocess
-import os
 
 
 class CtrlPepHeight:
-    def __init__(self, view_main):
+    def __init__(self, view_main, os):
         self.subprocess = subprocess
         self.show_flake8 = ShowPepHeight
         self.list_answer_choice_show_flake = [1, 2]
@@ -13,7 +12,7 @@ class CtrlPepHeight:
 
     def control_pep_console(self):
         check = self.subprocess.run(
-            'flake8 --exclude=env --ignore=F401', shell=True)
+            'flake8 --exclude=env', shell=True)
         if check.returncode == 0:
             print(self.show_flake8.result_check_flake_no_errors())
         else:
@@ -21,8 +20,7 @@ class CtrlPepHeight:
 
     def control_pep_html(self):
         return self.subprocess.run(
-            'flake8 --exclude=env --ignore=F401 '
-            '--format=html --htmldir=flake_report',
+            'flake8 --exclude=env --format=html --htmldir=flake_report',
             shell=True)
 
     def choice_show_flake(self):

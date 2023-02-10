@@ -1,12 +1,12 @@
-import copy
 
-from src.models.mdl_player_displayed import PlayerDisplayed
-from src.models.mdl_player_registered import PlayerRegistered
-from src.views.view_show_player import ShowPlayer
+from src.models import PlayerDisplayed
+from src.models import PlayerRegistered
+from src.views import ShowPlayer
 
 
 class CtrlPlayerMethods:
-    def __init__(self, view_main, manager_main):
+    def __init__(self, view_main, manager_main, copy):
+        self.copy = copy
         self.player_registered = PlayerRegistered
         self.player_displayed = PlayerDisplayed
         self.show_player = ShowPlayer()
@@ -104,14 +104,14 @@ class CtrlPlayerMethods:
                     id_player)))
 
     def init_player_round_point_calculated(self, tournament_name, list_player):
-        new_list_player = copy.deepcopy(list_player)
+        new_list_player = self.copy.deepcopy(list_player)
         for player in new_list_player:
             player.round_point = self.manager_main.check_main.check_results.\
                 check_round_point_player(tournament_name, player.id_chess)
         return new_list_player
 
     def init_player_encountered_updated(self, tournament_name, list_player):
-        new_list_player = copy.deepcopy(list_player)
+        new_list_player = self.copy.deepcopy(list_player)
         for player in new_list_player:
             player.encountered = self.manager_main.check_main.check_results.\
                 check_encountered_player(tournament_name, player.id_chess)
@@ -119,7 +119,7 @@ class CtrlPlayerMethods:
 
     def init_player_round_point_encountered(
             self, tournament_name, list_player):
-        new_list_player = copy.deepcopy(list_player)
+        new_list_player = self.copy.deepcopy(list_player)
         list_with_round_point = self.init_player_round_point_calculated(
             tournament_name, new_list_player)
         list_with_round_point_encountered = \

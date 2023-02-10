@@ -1,16 +1,19 @@
-from src.controls.ctrl_round_running import CtrlRoundRunning
-from src.controls.ctrl_round_methods import CtrlRoundMethods
-from src.controls.ctrl_tournament_methods import LeaveRound
+
+from src.controls import CtrlRoundMethods
+from src.controls import LeaveRound
+from src.controls import CtrlRoundRunning
 
 
 class CtrlTournamentRunning:
     def __init__(self, tournament_methods):
         self.tournament_methods = tournament_methods
+        self.copy = self.tournament_methods.copy
         self.round_methods = CtrlRoundMethods(
             self.tournament_methods.manager_main,
             self.tournament_methods.player_methods,
-            self.tournament_methods.view_main)
-        self.round_running = CtrlRoundRunning(self.round_methods)
+            self.tournament_methods.view_main,
+            self.copy)
+        self.round_running = CtrlRoundRunning(self.round_methods, self.copy)
         self.tournament_main = None
         self.tournament_main_running = True
 

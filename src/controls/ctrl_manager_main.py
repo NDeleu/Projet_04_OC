@@ -1,7 +1,7 @@
-from src.models.mdl_manager import Manager
-from src.controls.ctrl_manager_check_main import CtrlManagerCheckMain
-from src.controls.ctrl_manager_format import CtrlManagerFormat
-from src.controls.ctrl_manager_insert import CtrlManagerInsert
+from src.models import Manager
+from src.controls import CtrlManagerCheckMain
+from src.controls import CtrlManagerFormat
+from src.controls import CtrlManagerInsert
 
 
 class CtrlManagerMain:
