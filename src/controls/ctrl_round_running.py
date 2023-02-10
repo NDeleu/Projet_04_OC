@@ -83,7 +83,9 @@ class CtrlRoundRunning:
                         self.round_main.tournament_name, self.round_main.name)
 
                 else:
-                    self.match_methods.register_result_match(
-                        self.round_main.match)
 
-            self.round_main_running = self.round_methods.round_keep_running()
+                    if self.match_methods.register_result_match(
+                            self.round_main.match) is False:
+
+                        self.round_main_running = False
+

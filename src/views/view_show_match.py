@@ -27,6 +27,13 @@ class ShowMatch:
 
     show_choice_match_to_change = staticmethod(show_choice_match_to_change)
 
+    def show_choice_match_to_change_leave(number_choice):
+        return f"Retour au menu principal :         " \
+               f"                   {number_choice} \n"
+
+    show_choice_match_to_change_leave = staticmethod(
+        show_choice_match_to_change_leave)
+
     def confirm_result_match_register(result_match):
         return f"{result_match} a bien été enregistré \n"
 

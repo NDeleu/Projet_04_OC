@@ -18,6 +18,7 @@ class CtrlTournamentRunning:
         if self.tournament_main_running is False:
             self.tournament_main_running = True
             return False
+
         else:
 
             self.tournament_main = self.tournament_methods.tournament(
@@ -29,17 +30,27 @@ class CtrlTournamentRunning:
 
                 self.tournament_methods.no_player_in_list_player()
 
-                self.tournament_main.player_list.append(
-                    self.tournament_methods.player_methods.
-                    id_player_to_inst_player_displayed(
-                        self.tournament_methods.choice_id_player_to_tournament(
-                            self.tournament_main.player_list)))
+                answer_add_player = self.tournament_methods.\
+                    init_choice_id_player_to_tournament()
 
-                self.tournament_methods.success_add_player()
+                if answer_add_player is False:
+                    self.tournament_main_running = False
 
-                self.tournament_methods.save_list_player_to_database(
-                    self.tournament_main.name,
-                    self.tournament_main.player_list)
+                else:
+
+                    self.tournament_main.player_list.append(
+                        self.tournament_methods.player_methods.
+                        id_player_to_inst_player_displayed(
+                            self.tournament_methods.
+                            choice_id_player_to_tournament(
+                                answer_add_player,
+                                self.tournament_main.player_list)))
+
+                    self.tournament_methods.success_add_player()
+
+                    self.tournament_methods.save_list_player_to_database(
+                        self.tournament_main.name,
+                        self.tournament_main.player_list)
             else:
 
                 self.tournament_main.player_list = self.tournament_methods.\
@@ -51,23 +62,32 @@ class CtrlTournamentRunning:
                     self.tournament_methods.not_enough_player_in_list_player(
                         self.tournament_main.player_list)
 
-                    self.tournament_main.player_list.append(
-                        self.tournament_methods.player_methods.
-                        id_player_to_inst_player_displayed(
-                            self.tournament_methods.
-                            choice_id_player_to_tournament(
-                                self.tournament_main.player_list)))
+                    answer_add_player = self.tournament_methods. \
+                        init_choice_id_player_to_tournament()
 
-                    self.tournament_methods.success_add_player()
+                    if answer_add_player is False:
+                        self.tournament_main_running = False
 
-                    self.tournament_methods.save_list_player_to_database(
-                        self.tournament_main.name,
-                        self.tournament_main.player_list)
+                    else:
 
-                    if len(self.tournament_main.player_list) == 8:
-                        self.tournament_methods.\
-                            completed_player_in_list_player(
-                                self.tournament_main.player_list)
+                        self.tournament_main.player_list.append(
+                            self.tournament_methods.player_methods.
+                            id_player_to_inst_player_displayed(
+                                self.tournament_methods.
+                                choice_id_player_to_tournament(
+                                    answer_add_player,
+                                    self.tournament_main.player_list)))
+
+                        self.tournament_methods.success_add_player()
+
+                        self.tournament_methods.save_list_player_to_database(
+                            self.tournament_main.name,
+                            self.tournament_main.player_list)
+
+                        if len(self.tournament_main.player_list) == 8:
+                            self.tournament_methods.\
+                                completed_player_in_list_player(
+                                    self.tournament_main.player_list)
 
                 else:
 
@@ -143,6 +163,8 @@ class CtrlTournamentRunning:
                                         player_total_point_calculated(
                                             self.tournament_main.player_list)
 
+                                    self.tournament_main_running = False
+
                                 else:
 
                                     round_len_plus = \
@@ -184,6 +206,3 @@ class CtrlTournamentRunning:
                                         self.tournament_main.player_list))
                             except LeaveRound:
                                 self.tournament_main_running = False
-
-            self.tournament_main_running = self.tournament_methods.\
-                tournament_keep_running()

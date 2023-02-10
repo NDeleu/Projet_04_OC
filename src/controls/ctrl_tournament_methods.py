@@ -141,24 +141,33 @@ class CtrlTournamentMethods:
         else:
             return answer
 
-    def choice_id_player_to_tournament(self, player_list):
+    def init_choice_id_player_to_tournament(self):
         print(self.show_tournament.show_choice_id_player_to_tournament())
-        answer = self.view_main.view_input.try_choice_input([1, 2])
+        answer = self.view_main.view_input.try_choice_input([1, 2, 3])
+        if answer == "3":
+            return False
+        else:
+            return answer
+
+    def choice_id_player_to_tournament(self, answer, player_list):
         if answer == "1":
             answer_1_a = self.load_id_player_to_tournament()
             if answer_1_a is False:
-                return self.choice_id_player_to_tournament(player_list)
+                return self.choice_id_player_to_tournament(
+                    answer, player_list)
             else:
                 answer_1_b = self.check_player_in_player_list_tournament(
                     player_list, answer_1_a)
                 if answer_1_b is False:
-                    return self.choice_id_player_to_tournament(player_list)
+                    return self.choice_id_player_to_tournament(
+                        answer, player_list)
                 else:
                     return answer_1_b
         elif answer == "2":
             answer_2_a = self.create_id_player_to_tournament()
             if answer_2_a is False:
-                return self.choice_id_player_to_tournament(player_list)
+                return self.choice_id_player_to_tournament(
+                    answer, player_list)
             else:
                 return answer_2_a
 
@@ -251,15 +260,7 @@ class CtrlTournamentMethods:
                 player.surname,
                 player.id_chess,
                 player.round_point))
-
-    def tournament_keep_running():  # à modifier plus tard
-        answer = input("1 pour quitter, 2 pour continuer")
-        if answer == "1":
-            return False
-        elif answer == "2":
-            return True
-
-    tournament_keep_running = staticmethod(tournament_keep_running)
+        print(self.show_tournament.end_tournament_to_main_menu())
 
 
 class LeaveRound(Exception):

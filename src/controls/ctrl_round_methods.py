@@ -176,15 +176,6 @@ class CtrlRoundMethods:
 
     check_all_match_played = staticmethod(check_all_match_played)
 
-    def round_keep_running():  # à modifier plus tard
-        answer = input("1 pour quitter, 2 pour continuer")
-        if answer == "1":
-            return False
-        elif answer == "2":
-            return True
-
-    round_keep_running = staticmethod(round_keep_running)
-
     def show_end_round(self, round_name):
         print(self.show_round.init_show_end_round(round_name))
         print(self.show_round.init_show_result_match())

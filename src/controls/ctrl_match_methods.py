@@ -141,8 +141,14 @@ class CtrlMatchMethods:
                 proposed_match,
                 list_match.index(proposed_match) + 1))
             list_choice.append(list_match.index(proposed_match) + 1)
+        print(self.show_match.show_choice_match_to_change_leave(
+            len(list_choice)+1))
+        list_choice.append(len(list_choice)+1)
         answer = self.view_main.view_input.try_choice_input(list_choice)
-        return list_match[int(answer) - 1]
+        if int(answer) == len(list_choice):
+            return False
+        else:
+            return list_match[int(answer) - 1]
 
     def change_result_match(self, list_match):
         match_selected = self.select_match_played(list_match)
@@ -161,8 +167,11 @@ class CtrlMatchMethods:
     def register_result_match(self, list_match):
         match_selected = self.select_match_played(
             self.select_match_without_result(list_match))
-        print(self.show_match.confirm_result_match_register(
-            self.save_result_match(match_selected)))
+        if match_selected is False:
+            return False
+        else:
+            print(self.show_match.confirm_result_match_register(
+                self.save_result_match(match_selected)))
 
     def show_result_match(self, list_match):
         for match in list_match:

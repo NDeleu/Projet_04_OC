@@ -90,7 +90,9 @@ class ShowTournament:
                "Charger un joueur préexistant dans la base " \
                "de donnée et l'ajouter au tournoi :  1 \n" \
                "Créer un joueur dans la base de donnée et " \
-               "l'ajouter au tournoi :                2"
+               "l'ajouter au tournoi :                2 \n" \
+               "Retourner au menu principal :         " \
+               "                                          3"
 
     show_choice_id_player_to_tournament = staticmethod(
         show_choice_id_player_to_tournament)
@@ -154,3 +156,9 @@ class ShowTournament:
                f"{player_id} :   {player_round_point}"
 
     show_result_end_tournament = staticmethod(show_result_end_tournament)
+
+    def end_tournament_to_main_menu():
+        return "Le tournoi étant terminé vous allez " \
+               "être redirigé vers le menu principal"
+
+    end_tournament_to_main_menu = staticmethod(end_tournament_to_main_menu)
